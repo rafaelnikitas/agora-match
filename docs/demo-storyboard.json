@@ -1,0 +1,86 @@
+[
+  {
+    "id": "01-title",
+    "title": "The story behind the score",
+    "narration": "Football has more to say than the score. This is Agora Match.",
+    "audio_seconds": 3.81968253968254,
+    "duration": 4.37
+  },
+  {
+    "id": "02-roles",
+    "title": "One match. Three perspectives.",
+    "narration": "One synthetic match becomes three distinct experiences. Fans follow the story. Analysts inspect evidence. Coaches prepare focused reviews.",
+    "audio_seconds": 8.661043083900227,
+    "duration": 9.211
+  },
+  {
+    "id": "03-replay",
+    "title": "Follow the match",
+    "narration": "Play the match, follow the ball, and jump straight to key moments. The replay uses fictional events and illustrative tracking.",
+    "audio_seconds": 7.801904761904762,
+    "duration": 8.352
+  },
+  {
+    "id": "04-context",
+    "title": "Why this moment matters",
+    "narration": "At a corner, Agora connects the current moment with both teams' recent set piece history. Every claim keeps its sample size and source.",
+    "audio_seconds": 8.25469387755102,
+    "duration": 8.805
+  },
+  {
+    "id": "05-chat",
+    "title": "Ask. Inspect. Understand.",
+    "narration": "Ask the match in plain language. Open the supporting facts, then follow an event link back to the pitch.",
+    "audio_seconds": 6.03718820861678,
+    "duration": 6.587
+  },
+  {
+    "id": "06-cases",
+    "title": "Find the tactical evidence",
+    "narration": "Analysts can find tagged winger versus fullback encounters, and inspect each outcome alongside prior player positions.",
+    "audio_seconds": 7.337505668934241,
+    "duration": 7.888
+  },
+  {
+    "id": "07-time",
+    "title": "Evidence follows the clock",
+    "narration": "Rewind to twenty minutes. Later evidence disappears. The score becomes nil nil, and eight tagged encounters become one.",
+    "audio_seconds": 6.849886621315193,
+    "duration": 7.4
+  },
+  {
+    "id": "08-player",
+    "title": "The player perspective",
+    "narration": "Follow any player for position specific metrics, a movement heatmap, historical context, and a transparent demo rating.",
+    "audio_seconds": 7.058866213151927,
+    "duration": 7.609
+  },
+  {
+    "id": "09-coach",
+    "title": "Review cues with context",
+    "narration": "Coaches get qualified review cues. Lower sampled running output and wider spacing trigger questions, not fatigue diagnoses or assumed marking errors.",
+    "audio_seconds": 9.949750566893425,
+    "duration": 10.5
+  },
+  {
+    "id": "10-broadcast",
+    "title": "From insight to broadcast",
+    "narration": "Package a finding as a timed broadcast card, with machine readable evidence and an expiry.",
+    "audio_seconds": 5.990748299319728,
+    "duration": 6.541
+  },
+  {
+    "id": "11-ai",
+    "title": "A checked AI handoff",
+    "narration": "An optional Microsoft Foundry workflow separates analysis, audience narration, and review. Code preserves fact values. This public demo uses deterministic answers. Live model evaluation remains pending.",
+    "audio_seconds": 13.374693877551021,
+    "duration": 13.925
+  },
+  {
+    "id": "12-close",
+    "title": "Ask the match. See the evidence.",
+    "narration": "Explore two fictional matches. Ask, inspect, and share the story behind the score.",
+    "audio_seconds": 5.12,
+    "duration": 5.67
+  }
+]

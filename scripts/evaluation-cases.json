@@ -1,0 +1,9 @@
+[
+  {"question":"How many of the last attacks ended in crosses?","game_id":"northbridge-eastport","topic":"tactics","expected_values":["8/8","4/8"]},
+  {"question":"Why is this corner important?","game_id":"northbridge-eastport","topic":"history","expected_values":["3/7 matches","2/7 matches"]},
+  {"question":"Show all cases where the fullback faced the winger","game_id":"northbridge-eastport","topic":"fullback_winger","expected_values":[8]},
+  {"question":"What should I review about Noah Reed's defensive spacing?","game_id":"northbridge-eastport","topic":"spacing","expected_values":["8.0 m","23.0 m"]},
+  {"question":"Compare Luca Gray's xG with his last five matches","game_id":"northbridge-eastport","topic":"player_history","expected_values":[]},
+  {"question":"Compare the last 8 crosses with their historical average","game_id":"northbridge-eastport","topic":"team_history","expected_values":[]},
+  {"question":"Why is this free kick important?","game_id":"harbor-redvale","topic":"history","expected_values":["2/7 matches"]}
+]

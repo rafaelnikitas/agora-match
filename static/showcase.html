@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Agora Match — the 97-second walkthrough</title>
+  <meta name="description" content="See the working Agora Match prototype: three roles, evidence-linked match intelligence, and an optional checked Microsoft Foundry workflow.">
+  <style>
+    :root{color-scheme:dark;font-family:system-ui,sans-serif;background:#101d25;color:#f7fbfc}
+    *{box-sizing:border-box}body{max-width:1120px;margin:auto;padding:28px 24px 64px}header{display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #40515b;padding-bottom:22px}a{color:#9cebdc;text-underline-offset:5px}nav{display:flex;gap:22px;flex-wrap:wrap}h1{font-size:clamp(30px,5vw,54px);line-height:1.12;max-width:900px;margin-top:52px}p{font-size:18px;line-height:1.6;color:#c1ced5;max-width:900px}video{display:block;width:100%;aspect-ratio:16/9;background:#081117;border:1px solid #40515b;border-radius:12px;margin:30px 0 20px}h2{font-size:24px;margin-top:38px}.links{display:flex;gap:16px;flex-wrap:wrap}.links a{padding:13px 18px;border:1px solid #5d8a82;border-radius:8px}summary{cursor:pointer;padding:16px 0;font-size:19px}details p{font-size:16px}a:focus-visible,summary:focus-visible{outline:3px solid #fff;outline-offset:5px}.label{color:#9cebdc;letter-spacing:.12em;font-size:13px;font-weight:700}
+  </style>
+</head>
+<body>
+  <header><strong>AGORA MATCH</strong><nav aria-label="Project links"><a href="/">Open the app</a><a href="https://github.com/rafaelnikitas/agora-match">Public source</a></nav></header>
+  <main>
+    <p class="label">WORKING PROTOTYPE · SYNTHETIC FOOTBALL DATA</p>
+    <h1>The story behind the score.</h1>
+    <p>A narrated, captioned walkthrough of matchday, visual analysis, player evidence, coach review, and the optional Microsoft Foundry handoff.</p>
+    <video controls preload="metadata" poster="https://playerlens-match-intelligence.russettitan64.chatgpt.site/media/agora-match-poster.jpg" aria-label="Agora Match narrated demonstration">
+      <source src="https://playerlens-match-intelligence.russettitan64.chatgpt.site/media/agora-match-demo.mp4" type="video/mp4">
+      <track kind="captions" src="https://playerlens-match-intelligence.russettitan64.chatgpt.site/media/agora-match-demo.vtt" srclang="en" label="English" default>
+      Your browser cannot play this video. Use the download link below.
+    </video>
+    <div class="links"><a href="/">Try Agora Match</a><a href="https://playerlens-match-intelligence.russettitan64.chatgpt.site/media/agora-match-demo.mp4" download>Download MP4 · 1:37</a><a href="https://github.com/rafaelnikitas/agora-match">Explore the code</a></div>
+    <h2>What you are seeing</h2>
+    <p>Authentic captures from the functioning app, edited for clarity. Teams, players, history, events, and telemetry are fictional. Narration is synthesized and captions are included. No match footage or music is used.</p>
+    <details><summary>AI execution status and limits</summary><p>The public demo uses deterministic responses. The source includes an optional Microsoft Foundry analyst, narrator, and reviewer workflow. Live model evaluation and Azure deployment remain unverified. Local regression checks are not a live LLM accuracy score. Player positions are minute-sampled; the second-by-second ball path is illustrative interpolation constrained by event locations.</p></details>
+    <details><summary>Transcript and credits</summary><p><a href="https://playerlens-match-intelligence.russettitan64.chatgpt.site/media/agora-match-demo.vtt">Read the caption transcript</a>. Voice generated with Piper using the en_US-ljspeech-high voice; the LJ Speech source dataset is public domain. See the repository's demo asset credits for the model card and production details.</p></details>
+  </main>
+</body>
+</html>

@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+.pytest_cache/
+dist/
+build/
+.azure/
+.openai/
+infra/main.json
+static/data/
+static/media/

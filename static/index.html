@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Agora Match — Football Intelligence</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Agora Match home"><span class="brand-mark">A</span> AGORA MATCH</a>
+    <nav aria-label="Main navigation" id="screen-nav" hidden>
+      <button class="active" type="button" data-screen-target="match">Match</button>
+      <button type="button" data-screen-target="players">Player</button>
+      <button type="button" data-screen-target="stories">Insights</button>
+      <button type="button" data-screen-target="coach">Coach</button>
+    </nav>
+    <button class="change-role" id="change-role" type="button" hidden><span id="workspace-role-label">Fan workspace</span><span aria-hidden="true">⇄</span></button>
+    <div class="theme-switcher" id="theme-switcher" role="group" aria-label="Choose light or dark theme" hidden>
+      <button type="button" data-flavor-choice="modern" aria-label="Use light theme" title="Light theme"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg></button><button type="button" data-flavor-choice="classical" aria-label="Use dark theme" title="Dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.7 8.7 0 0 1 9.8 3.5 8.8 8.8 0 1 0 20.5 14.2Z"/></svg></button>
+    </div>
+    <span class="live"><i></i> SYNTHETIC DEMO</span>
+  </header>
+  <main class="onboarding" id="onboarding">
+    <div class="onboarding-copy"><p class="eyebrow">The game has more to say.</p><h1>One match.<br>Three ways to see it.</h1><p>Pick your seat. Agora brings the match, the context, and the answers to you.</p></div>
+    <section class="onboarding-flavors" aria-labelledby="flavor-title"><div><p class="eyebrow">Appearance</p><h2 id="flavor-title">Choose a theme</h2></div><div class="flavor-cards" role="group" aria-label="Choose light or dark theme">
+      <button class="flavor-card theme-card" type="button" data-flavor-choice="modern" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg><strong>Light</strong></button>
+      <button class="flavor-card theme-card" type="button" data-flavor-choice="classical" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.7 8.7 0 0 1 9.8 3.5 8.8 8.8 0 1 0 20.5 14.2Z"/></svg><strong>Dark</strong></button>
+    </div></section>
+    <p id="onboarding-status" class="onboarding-status" role="status">Preparing your two synthetic matches…</p><button id="reload-data" class="text-action" type="button" hidden>Reload match data →</button>
+    <div class="role-cards">
+      <button class="role-card" type="button" disabled data-enter-role="fan"><span class="role-art art-fan" aria-hidden="true"><span class="mini-pitch"><i></i><i></i><i></i><b></b></span><span class="art-caption">The story, as it unfolds.</span></span><span class="role-title">I'm a fan <span>01</span></span><span class="role-description">Follow every moment. Find your player. Ask why it mattered.</span><span class="role-preview">Live replay · commentary · simple answers</span><span class="role-cta">Take your seat <span>↗</span></span></button>
+      <button class="role-card" type="button" disabled data-enter-role="analyst"><span class="role-art art-analyst" aria-hidden="true"><span class="mini-chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="art-caption">A question becomes evidence.</span></span><span class="role-title">I'm an analyst <span>02</span></span><span class="role-description">Find the pattern. Open the cases. Build an evidence brief.</span><span class="role-preview">Visual search · matchups · historical context</span><span class="role-cta">Open the desk <span>↗</span></span></button>
+      <button class="role-card" type="button" disabled data-enter-role="coach"><span class="role-art art-coach" aria-hidden="true"><span class="mini-checklist"><i>01 <b></b> ↗</i><i>02 <b></b> ↗</i><i>03 <b></b> ↗</i></span><span class="art-caption">Know what to review next.</span></span><span class="role-title">I'm a coach <span>03</span></span><span class="role-description">Spot a cue. Check the player. Prepare your next conversation.</span><span class="role-preview">Priority board · squad signals · review plan</span><span class="role-cta">Join the touchline <span>↗</span></span></button>
+    </div>
+    <p class="onboarding-note">Matches, players, history, and sensor readings are fictional synthetic examples. Theme and role preferences are saved on this device.</p>
+  </main>
+  <main class="page" hidden>
+    <section class="intro">
+      <div><p class="eyebrow" id="game-heading">Synthetic match · 22 perspectives</p><h1 id="workspace-title">Your matchday, with more insight.</h1><p id="workspace-subtitle" class="workspace-subtitle">Follow the action. Ask anything about the match.</p></div>
+      <div class="selectors">
+        <div class="selector-wrap" id="match-select-wrap"><label for="game-select">Match</label><select id="game-select"></select></div>
+        <div class="selector-wrap audience-selector"><label for="view-select">Audience</label><select id="view-select"><option value="fan">Fan</option><option value="analyst">Analyst</option><option value="coach">Coach</option></select></div>
+      </div>
+    </section>
+    <div id="match-buttons" class="match-buttons" role="group" aria-label="Choose match"></div>
+    <p class="audience-help" id="audience-help">Headlines and simple explanations</p>
+    <section class="scoreboard" aria-label="Current score">
+      <span id="home-name">Northbridge</span><strong id="score">1 — 0</strong><span id="away-name">Eastport</span><span class="minute">72:18</span>
+    </section>
+    <div class="analysis-clock-bar"><span id="analysis-clock-status" role="status">Evidence follows the replay clock.</span><details id="accuracy-checks"><summary>Checks &amp; limits</summary><div id="accuracy-summary">Checking the verification report…</div></details></div>
+    <section id="role-guide" class="role-guide" aria-live="polite" hidden></section>
+    <section id="personal-controls" class="personal-controls" aria-label="Personal accessibility settings" hidden></section>
+
+    <section class="screen active" id="screen-match" aria-labelledby="match-title">
+      <section id="fan-matchday" class="fan-matchday" aria-label="Your matchday highlights" hidden></section>
+      <div class="screen-heading"><div><p class="eyebrow">Match replay</p><h2 id="match-title">Follow the ball</h2></div><span class="sample-tag">SIMULATED MATCH</span></div>
+      <div class="match-grid live-match-grid">
+        <div class="column-stack live-primary">
+          <article class="panel pitch-panel">
+            <div class="panel-head"><div><p class="eyebrow">Live ball map · synthetic replay</p><h2 id="shape-label">Where the ball is</h2></div><span class="live-clock" id="tactical-minute">72:18</span></div>
+            <div class="pitch live-pitch" id="live-pitch" role="img" aria-label="Synthetic football pitch with ball position and sampled player positions."></div>
+            <div class="ball-controls"><button type="button" id="ball-play" aria-label="Play ball replay">▶ Play</button><button type="button" class="speed-button" id="ball-speed" aria-label="Playback speed 2 times">2×</button><button type="button" id="ball-next-moment" aria-label="Jump to next key moment">Next moment →</button><label class="sr-only" for="ball-range">Scrub through ball position by match second</label><input id="ball-range" type="range" min="0" max="1" value="0"><strong id="ball-clock">00:00</strong></div>
+            <div class="ball-summary"><span class="ball-key"><i></i> Ball</span><span class="home-key"><i></i> <span id="ball-home-name">Home</span></span><span class="away-key"><i></i> <span id="ball-away-name">Away</span></span><span id="ball-event">No event at this second</span></div>
+            <section class="live-event-strip" aria-label="Synthetic event playback"><div><p class="eyebrow">Match moment</p><strong id="live-event-title">Ready to replay match events</strong><span id="live-event-detail">Play the key events in order.</span></div><div class="live-event-actions"><time id="live-event-time">—</time><button type="button" id="stream-events">▶ Play key moments</button></div></section>
+            <section class="broadcast-overlay" id="broadcast-overlay" aria-live="polite" hidden><div><p class="eyebrow">Broadcast overlay preview · timed synthetic insight</p><strong id="overlay-title"></strong><p id="overlay-summary"></p><small id="overlay-meta"></small></div><button type="button" id="download-overlay">Download JSON</button></section>
+            <div class="commentary-actions" role="group" aria-label="Match commentary"><button class="commentary-action" type="button" id="generate-commentary"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 18.5 3 21l.8-4A8.5 8.5 0 1 1 5 18.5Z"/><path d="M8 10h8M8 14h5"/></svg><span>Commentary</span></button><button class="commentary-action secondary" type="button" id="speak-commentary"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M17 9a5 5 0 0 1 0 6m2-9a9 9 0 0 1 0 12"/></svg><span>Speak</span></button><span class="commentary-label" id="commentary-model" aria-live="polite">Foundry narration when connected · synthetic demo otherwise</span></div>
+            <div class="commentary-output" id="commentary-output" aria-live="polite" hidden></div>
+            <p class="pitch-caption" id="pitch-caption"></p><p class="caveat-note">Synthetic ball path; player positions are sampled once per minute.</p>
+          </article>
+          <article class="panel pulse-panel"><div class="panel-head"><div><p class="eyebrow">Match rhythm</p><h2>Tagged key actions by minute</h2></div><span class="muted">Select a minute</span></div><div id="attack-pulse" class="attack-pulse" role="group" aria-label="Tagged key actions by minute"></div><div class="pulse-legend"><span>Height = tagged actions</span><span>Shots · crosses · key passes · dribbles · duels · interceptions</span></div></article>
+          <article class="panel recap-panel" id="recap-card"><div class="panel-head"><div><p class="eyebrow" id="recap-label">Auto-generated live recap</p><h2>Match recap</h2></div><span class="sample-tag">EVIDENCE LINKED</span></div><h3 id="recap-headline"></h3><p id="recap-summary"></p><div class="recap-facts" id="recap-facts"></div><p class="ai-status" id="ai-status" aria-live="polite"></p></article>
+          <article class="panel decision-panel" id="decision-panel" hidden><div class="panel-head"><div><p class="eyebrow">Player point of view</p><h2 id="decision-heading">Options around the ball</h2></div><span class="sample-tag">SAMPLED POSITIONS</span></div><div id="decision-options" class="decision-options"></div><p id="decision-note" class="caveat-note"></p></article>
+        </div>
+        <div class="column-stack intelligence-column"><article id="moment-context" class="panel moment-context" aria-label="Why this moment matters"></article>
+          <div id="match-assistant-slot"><article class="panel intelligence-panel live-chat-panel" aria-labelledby="match-chat-title">
+            <div class="panel-head"><div><p class="eyebrow">Agora Match · synthetic data</p><h2 id="match-chat-title">Ask Agora</h2></div><span id="chat-mode" class="sample-tag">EVIDENCE-BASED DEMO</span></div>
+            <p class="chat-intro">This match, its history, and your questions.</p>
+            <div class="live-suggestions" id="live-suggestions" aria-label="Suggested questions"></div>
+            <div id="chat-messages" class="chat-messages" role="log" aria-label="Conversation with Agora" aria-live="polite" aria-relevant="additions"></div>
+            <form id="chat-form" class="chat-form"><label class="sr-only" for="chat-input">Ask a question about this match</label><textarea id="chat-input" rows="2" maxlength="1000" placeholder="Message Agora…" required></textarea><button id="chat-submit" type="submit" aria-label="Send message"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 4 17 8-17 8 3-8-3-8Zm3 8h14"/></svg></button></form>
+            <details class="insight-drawer"><summary>Generated insights <span>Open</span></summary><div class="live-insights" id="live-insights"></div></details>
+            <p class="chat-footnote" id="chat-footnote">Synthetic data · sources included · demo answers</p>
+          </article></div>
+          <details class="panel event-explorer" id="event-explorer"><summary><span><small class="eyebrow">Event timeline</small><strong>Open play-by-play</strong><span class="muted" id="timeline-count"></span></span><span class="expand-indicator">＋</span></summary><div class="event-details"><div class="panel-head"><div><p class="eyebrow">Play-by-play</p><h2>Choose a moment</h2></div><span class="muted" id="timeline-caption">Latest first</span></div><div class="replay-controls"><button id="replay-toggle" type="button">▶ Play</button><button id="replay-speed" class="speed-button" type="button" aria-label="Event speed 2 times">2×</button><button id="replay-start" type="button">↺ Start</button><button id="replay-back" type="button" aria-label="Previous event">← Previous</button><button id="replay-forward" type="button" aria-label="Next event">Next →</button><label class="sr-only" for="replay-range">Choose an event</label><input id="replay-range" type="range" min="0" max="1" value="1"><span id="replay-position" class="muted"></span></div><div class="event-list" id="play-by-play" aria-live="polite"></div></div></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-players" aria-labelledby="player-screen-title" hidden>
+      <div class="screen-heading"><div><p class="eyebrow">Individual match view</p><h2 id="player-screen-title">Player performance</h2></div><div class="player-controls"><label for="player-select">Follow player</label><select id="player-select"></select><div id="player-choice-buttons" class="player-choice-buttons" role="group" aria-label="Choose player"></div><span class="sample-tag">SYNTHETIC</span></div></div>
+      <section id="player-context" class="player-context" aria-label="Selected player overview"></section>
+      <div class="player-grid">
+        <div class="column-stack">
+          <article class="panel">
+            <div class="panel-head"><div><p class="eyebrow" id="player-team-label">Player profile</p><h2><span id="player-name">Milo Vale</span> <span class="muted" id="player-role">· #8 · CM</span></h2></div><span class="view-label" id="player-rank-label">Touches rank · —</span></div>
+            <div class="player-strip" id="player-stats"></div>
+            <div class="timeline-head"><strong>Key moments</strong><span id="player-moment-caption">Actions linked to this player</span></div>
+            <div class="timeline-labels player-moments" id="player-moments"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><div><p class="eyebrow">Movement profile</p><h2>Where this player moved</h2></div><span class="muted">Synthetic tracking</span></div>
+            <div class="heatmap-pitch" id="player-heatmap" role="img" aria-label="Synthetic player movement heatmap"></div>
+            <p class="pitch-caption" id="heatmap-caption">Generated movement sample for this fictional player</p>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><div><p class="eyebrow">Match rating · demo model</p><h2>How the rating changed</h2></div><div class="rating-badge"><strong id="rating-value">6.0</strong><small id="rating-through">through 0′</small></div></div>
+            <div class="rating-chart" id="rating-trace"></div><p class="pitch-caption" id="rating-note"></p>
+            <p class="caveat-note">A transparent demo score from tagged actions, with a neutral 6.0 start. It is not an official FIFA/EA rating; sparse feed coverage can miss contributions.</p>
+          </article>
+          <article class="panel player-matchup-panel">
+            <div class="panel-head"><div><p class="eyebrow">Direct matchup · detailed view</p><h2>One-v-one record</h2></div><span class="sample-tag">TAGGED ACTIONS</span></div>
+            <div id="player-matchups" class="matchup-list"></div>
+            <p class="caveat-note">“Stopped” includes a lost duel, stopped dribble, or blocked forward route. Counts are shown with the sample size.</p>
+          </article>
+        </div>
+        <div class="column-stack">
+          <article class="panel">
+            <div class="panel-head"><div><p class="eyebrow">Position-adjusted panel</p><h2 id="kpi-heading">Role KPIs</h2></div><span class="sample-tag" id="position-label">CM</span></div>
+            <div class="kpi-grid" id="role-kpis"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><div><p class="eyebrow">Form context</p><h2>Today vs recent form</h2></div><span class="muted">last 5 · season avg</span></div>
+            <div class="comparison-table" id="player-comparison"></div>
+            <p class="caveat-note">All match, last-five, and season values in this demo are generated synthetic examples. Real comparisons need licensed or public historical player data.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-stories" aria-labelledby="stories-title" hidden>
+      <div class="screen-heading"><div><p class="eyebrow" id="stories-kicker">Match intelligence</p><h2 id="stories-title">Stories worth a closer look</h2></div><span id="view-label" class="view-label">Fan view</span></div>
+      <section id="analyst-tools" aria-label="Analysis tools" hidden></section>
+      <div class="analysis-layout"><div class="analysis-main column-stack">
+      <section id="analysis-result" class="panel analysis-result" aria-live="polite" hidden></section>
+      <section class="panel matchup-explorer" id="matchup-explorer" hidden aria-labelledby="matchup-explorer-title"><div class="panel-head"><div><p class="eyebrow">Analyst query · visual case finder</p><h2 id="matchup-explorer-title">Fullback vs winger encounters</h2></div><span class="sample-tag" id="matchup-case-count">SYNTHETIC CASES</span></div><p class="pitch-caption" id="matchup-explainer">Each case links a tagged one-v-one event to the prior minute-sampled positions.</p><div class="matchup-explorer-grid"><div><div class="matchup-case-list" id="matchup-case-list"></div></div><div><div class="pitch matchup-pitch" id="matchup-pitch" role="img" aria-label="Selected synthetic fullback and winger encounter on a football pitch"></div><p class="pitch-caption" id="matchup-case-detail"></p></div></div><p class="caveat-note">Case selection is complete only for this synthetic tagged sample. Player coordinates are the prior minute-level snapshot, not event-time tracking.</p></section>
+      <section class="history-panel panel" id="history-panel" aria-label="Synthetic recent history"></section>
+      <div class="stories-grid">
+        <div id="insights" class="insights" aria-live="polite"><p class="loading">Loading match insights…</p></div>
+      </div>
+      <details class="panel system-details"><summary>How Agora checks its answers <span id="foundry-pipeline-status" class="sample-tag">DEMO PATH</span></summary><div class="agent-flow" aria-label="Stats, Analyst, Narrator, Checker"><div><strong>Stats</strong><small>verified by code</small></div><span aria-hidden="true">→</span><div><strong>Analyst</strong><small>finds a pattern</small></div><span aria-hidden="true">→</span><div><strong>Narrator</strong><small>fits your role</small></div><span aria-hidden="true">→</span><div><strong>Checker</strong><small>checks the claims</small></div></div><p class="agent-flow-note">Microsoft Foundry runs the model roles when configured. The public demo uses evidence templates.</p></details>
+      </div><aside id="analyst-assistant-slot" class="assistant-slot" aria-label="Analysis assistant"></aside></div>
+    </section>
+
+    <section class="screen" id="screen-coach" aria-labelledby="coach-title" hidden>
+      <div class="screen-heading"><div><p class="eyebrow">Touchline review</p><h2 id="coach-title">What needs your attention?</h2></div><div id="coach-team-switch" class="segmented-control" role="group" aria-label="Choose your team"></div></div>
+      <div class="coach-workspace-layout"><div class="coach-workspace-primary column-stack">
+      <section id="coach-priority-board" class="coach-priority-board" aria-label="Prioritized review cues"></section>
+      <section id="coach-review-plan" class="panel" aria-label="Your review plan"></section>
+      <article class="panel workload-panel"><div class="panel-head"><div><p class="eyebrow">Synthetic wearable feed</p><h2>Workload across the match</h2></div><span class="sample-tag">DEMO SIGNALS</span></div><div id="workload-chart" class="workload-chart"></div><p id="workload-note" class="caveat-note"></p></article>
+      <div class="coach-grid">
+        <div class="column-stack">
+          <article class="panel"><div class="panel-head"><div><p class="eyebrow">Selected player</p><h2 id="coach-player-heading">Player · role</h2></div><span class="sample-tag">POSITION CONTEXT</span></div><div id="coach-indicators" class="coach-signals"></div></article>
+          <article class="panel"><div class="panel-head"><div><p class="eyebrow">Opponent interaction</p><h2>Matchup review cue</h2></div></div><div id="coach-matchup" class="coach-matchup"></div></article>
+        </div>
+        <article class="panel"><div class="panel-head"><div><p class="eyebrow">Squad scan</p><h2>Team review cues</h2></div><span id="coach-team-label" class="muted">Click a player to focus</span></div><div id="coach-team-table"></div></article>
+      </div>
+      <p class="caveat-note">Interpretation guardrails: role speed is compared with same-role synthetic peers; possible fatigue comes from paired tracking windows; assignment gaps are tracking-derived review cues, not proof of a coaching assignment.</p>
+      </div><aside id="coach-assistant-slot" class="assistant-slot" aria-label="Coach assistant"></aside></div>
+    </section>
+
+    <footer><span class="footer-brand">AGORA MATCH</span><span>Fictional teams. Synthetic matches and history. Real questions.</span><span><a href="showcase.html">Watch demo</a> · <a href="https://github.com/rafaelnikitas/agora-match" target="_blank" rel="noopener">Source</a></span></footer>
+  </main>
+  <div id="workspace-status" class="workspace-toast" role="status" hidden></div>
+  <script src="/experience.js" defer></script>
+  <script src="/evidence.js"></script>
+  <script src="/app.js" defer></script>
+</body>
+</html>

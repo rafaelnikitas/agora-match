@@ -1,0 +1,13 @@
+.git
+.github
+.venv
+.env
+.env.*
+.azure
+.openai
+dist
+build
+__pycache__
+*.pyc
+tests
+docs

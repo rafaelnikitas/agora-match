@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environmentName": {"value": "demo"},
+    "modelDeployments": {"value": [
+      {"name":"agora-chat","modelName":"gpt-5.4-mini","modelVersion":"2026-03-17","skuName":"GlobalStandard","capacity":5}
+    ]},
+    "readerDeployment": {"value":"agora-chat"},
+    "writerDeployment": {"value":"agora-chat"},
+    "reviewerDeployment": {"value":"agora-chat"},
+    "reasoningDeployments": {"value":"agora-chat"},
+    "reasoningEffort": {"value":"low"},
+    "minReplicas": {"value":0},
+    "maxReplicas": {"value":2}
+  }
+}
