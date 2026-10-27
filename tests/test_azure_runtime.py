@@ -96,6 +96,7 @@ class AzureRuntimeTests(unittest.TestCase):
     def test_azure_template_parameters_reference_real_deployments(self):
         p=Path(__file__).resolve().parents[1]/'infra/parameters.example.json'
         self.assertTrue(validate(p)['valid'])
+        self.assertEqual(validate(p.with_name('parameters.trial.json'))['max_replicas'],1)
 
     def test_operation_logs_exclude_unapproved_fields(self):
         row=logging.LogRecord('agora',logging.INFO,'',0,'model_stage',(),None)
@@ -107,6 +108,17 @@ class AzureRuntimeTests(unittest.TestCase):
 
 
 class LimitsAndConfigurationTests(unittest.TestCase):
+    def test_foundry_project_endpoint_keeps_strict_path_and_host_boundaries(self):
+        base='https://agora.services.ai.azure.com'
+        good=base+'/api/projects/agora-match/openai/v1'
+        self.assertNotIn('invalid_azure_v1_endpoint',FoundrySettings(base_url=good).errors())
+        for endpoint in [base+'/api/projects/../openai/v1',base+'/api/projects/a%2Fb/openai/v1',
+                         base+'/api/projects/agora/openai/v1?key=secret',good+'#fragment',
+                         good.replace('.services.ai.azure.com','.openai.azure.com'),
+                         good.replace('.services.ai.azure.com','.services.ai.azure.com.evil.example')]:
+            with self.subTest(endpoint=endpoint):
+                self.assertIn('invalid_azure_v1_endpoint',FoundrySettings(base_url=endpoint).errors())
+
     def test_only_azure_https_v1_endpoints_are_allowed(self):
         for endpoint in ['http://localhost/openai/v1','https://evil.example/openai/v1','https://x.openai.azure.com:bad/openai/v1','https://user:secret@x.openai.azure.com/openai/v1']:
             self.assertIn('invalid_azure_v1_endpoint',FoundrySettings(base_url=endpoint).errors())

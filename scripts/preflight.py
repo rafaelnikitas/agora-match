@@ -10,6 +10,11 @@ def validate(path):
     name = values.get('environmentName','demo')
     if not re.fullmatch(r'[a-z][a-z0-9-]{0,15}',name):
         raise ValueError('environmentName must be a lowercase slug of 1–16 characters')
+    kind = values.get('foundryKind','OpenAI')
+    if kind not in {'OpenAI','AIServices'}:
+        raise ValueError('foundryKind must be OpenAI or AIServices')
+    if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_-]{1,63}',values.get('foundryProjectName','agora-match')):
+        raise ValueError('Invalid Foundry project name')
     models = values.get('modelDeployments',[])
     names = [m['name'] for m in models]
     if not names or len(names) != len(set(names)):
@@ -19,6 +24,10 @@ def validate(path):
             raise ValueError('Invalid model deployment name or capacity')
         if not model.get('modelName') or not model.get('modelVersion'):
             raise ValueError('Pin model name and version')
+        if model.get('modelFormat','OpenAI') not in {'OpenAI','OpenAI-OSS'}:
+            raise ValueError('Unsupported model format')
+        if model.get('modelFormat') == 'OpenAI-OSS' and kind != 'AIServices':
+            raise ValueError('OpenAI-OSS requires an AIServices Foundry project')
     for role in ('readerDeployment','writerDeployment','reviewerDeployment'):
         if values.get(role,'agora-chat') not in names:
             raise ValueError(f'{role} does not name a provisioned model deployment')
@@ -28,6 +37,8 @@ def validate(path):
     minimum, maximum = values.get('minReplicas',0), values.get('maxReplicas',2)
     if not 0 <= minimum <= 1 or not 1 <= maximum <= 3 or minimum > maximum:
         raise ValueError('Invalid replica bounds')
+    if not 1 <= values.get('modelTimeoutSeconds',15) <= 60 or not 3 <= values.get('answerBudgetSeconds',45) <= 120:
+        raise ValueError('Invalid model time budgets')
     return {'valid':True,'deployments':len(models),'roles':3,'max_replicas':maximum}
 
 

@@ -19,6 +19,7 @@ jobs:
       - run: python -m agora_match.build_site
       - run: node tests/browser_evidence.cjs
       - run: python scripts/preflight.py
+      - run: python scripts/preflight.py --parameters infra/parameters.trial.json
       - run: bash -n scripts/deploy-azure.sh
       - run: docker build --tag agora-match:ci .
       - name: Exercise the container without Azure credentials

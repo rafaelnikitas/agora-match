@@ -25,11 +25,19 @@ The Bicep template provisions:
 
 - Container Apps Consumption environment and one UI/API container, with HTTPS ingress.
 - Azure Container Registry Basic, admin login and anonymous pull disabled.
-- An Azure OpenAI resource for Foundry Models, pinned model deployment versions, and local key authentication disabled.
-- A user-assigned managed identity with OpenAI User, AcrPull, and Monitoring Metrics Publisher access at the corresponding resource scopes.
+- An Azure OpenAI resource, or an AIServices Foundry account and project, with pinned model versions and local key authentication disabled.
+- A user-assigned managed identity with resource-scoped model invocation, AcrPull, and Monitoring Metrics Publisher permissions. The OpenAI route uses Cognitive Services OpenAI User; the Foundry project route uses Cognitive Services User on the dedicated AI account.
 - A Log Analytics workspace and workspace-based Application Insights with Entra-authenticated application telemetry.
 
 The default is `gpt-5.4-mini`, version `2026-03-17`, GlobalStandard capacity `5`, in `swedencentral`. Region support, quota, model access, and version availability must be checked in the actual subscription. The model profile omits temperature and uses `max_completion_tokens` with low reasoning effort. Change the parameter file if your available deployment differs. The template does not silently select another model.
+
+### Free-trial profile
+
+`infra/parameters.trial.json` selects a Foundry AIServices account and `agora-match` project, with `gpt-oss-120b`, format `OpenAI-OSS`, version `1`, GlobalStandard capacity `10`. All three application roles share this deployment. The app uses the project's OpenAI-compatible v1 endpoint and Entra token audience `https://ai.azure.com/.default`. It allows one container replica, scales to zero, and uses a 15-second HTTP timeout and 45-second answer budget.
+
+This profile was prepared after checking a free-trial subscription's actual Sweden Central quota and model catalog on 27 October 2026: GPT-OSS quota was positive while the checked GPT model quotas were zero. This is **not** a guarantee for other subscriptions or proof of a successful live model request. Recheck your own quota, regional policy, and model access. A trial profile still consumes credit for eligible services; it does not make ACR, inference, builds, or logs universally free. Keep the trial spending limit enabled; these scripts never upgrade the account or remove it.
+
+The project/resource pattern follows Microsoft's [Foundry starter](https://github.com/Azure-Samples/ai-model-start) and [GPT-OSS deployment guidance](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/gpt-oss).
 
 ## 1. Run locally
 
@@ -77,6 +85,8 @@ export AZURE_SUBSCRIPTION_ID="<intended-subscription-id>"
 export AZURE_RESOURCE_GROUP="agora-match-demo"
 export AZURE_LOCATION="swedencentral"
 # Optional: export AGORA_PARAMETERS_FILE="$PWD/.azure/parameters.json"
+# For the quota-checked GPT-OSS route:
+# export AGORA_PARAMETERS_FILE="$PWD/infra/parameters.trial.json"
 bash scripts/deploy-azure.sh
 ```
 

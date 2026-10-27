@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environmentName": {"value":"demo"},
+    "foundryKind": {"value":"AIServices"},
+    "foundryProjectName": {"value":"agora-match"},
+    "modelDeployments": {"value":[
+      {"name":"agora-chat","modelName":"gpt-oss-120b","modelFormat":"OpenAI-OSS","modelVersion":"1","skuName":"GlobalStandard","capacity":10}
+    ]},
+    "readerDeployment": {"value":"agora-chat"},
+    "writerDeployment": {"value":"agora-chat"},
+    "reviewerDeployment": {"value":"agora-chat"},
+    "reasoningDeployments": {"value":"agora-chat"},
+    "reasoningEffort": {"value":"low"},
+    "modelTimeoutSeconds": {"value":15},
+    "answerBudgetSeconds": {"value":45},
+    "minReplicas": {"value":0},
+    "maxReplicas": {"value":1}
+  }
+}

@@ -20,6 +20,7 @@ jobs:
     environment: azure-verification
     env:
       AZURE_FOUNDRY_BASE_URL: ${{ vars.AZURE_FOUNDRY_BASE_URL }}
+      AZURE_FOUNDRY_TOKEN_SCOPE: ${{ vars.AZURE_FOUNDRY_TOKEN_SCOPE || 'https://cognitiveservices.azure.com/.default' }}
       AZURE_FOUNDRY_AUTH_MODE: default_credential
       AZURE_FOUNDRY_DEPLOYMENT: ${{ vars.AZURE_FOUNDRY_DEPLOYMENT }}
       AZURE_FOUNDRY_READER_DEPLOYMENT: ${{ vars.AZURE_FOUNDRY_READER_DEPLOYMENT || vars.AZURE_FOUNDRY_DEPLOYMENT }}

@@ -17,6 +17,18 @@ param maxReplicas int = 2
 param readerDeployment string = 'agora-chat'
 param writerDeployment string = 'agora-chat'
 param reviewerDeployment string = 'agora-chat'
+@allowed(['OpenAI', 'AIServices'])
+@description('AIServices creates a Foundry project and supports models such as GPT-OSS.')
+param foundryKind string = 'OpenAI'
+@minLength(2)
+@maxLength(64)
+param foundryProjectName string = 'agora-match'
+@minValue(1)
+@maxValue(60)
+param modelTimeoutSeconds int = 15
+@minValue(3)
+@maxValue(120)
+param answerBudgetSeconds int = 45
 @description('Deployment names using reasoning-model API parameters. Comma separated.')
 param reasoningDeployments string = 'agora-chat'
 @allowed(['', 'none', 'low', 'medium', 'high'])
@@ -35,6 +47,11 @@ param modelDeployments array = [
 var token = uniqueString(subscription().id, resourceGroup().id, environmentName)
 var appName = 'agora-${environmentName}-${token}'
 var aiName = 'agora-ai-${token}'
+var modelBaseUrl = foundryKind == 'AIServices'
+  ? 'https://${aiName}.services.ai.azure.com/api/projects/${foundryProjectName}/openai/v1'
+  : 'https://${aiName}.openai.azure.com/openai/v1'
+var modelTokenScope = foundryKind == 'AIServices' ? 'https://ai.azure.com/.default' : 'https://cognitiveservices.azure.com/.default'
+var modelRoleId = foundryKind == 'AIServices' ? 'a97b65f3-24c7-4388-baec-2e87135dc908' : '5e0bd9bd-7b93-4f28-af87-19fc36ad61bd'
 var tags = { application: 'agora-match', environment: environmentName, data: 'synthetic' }
 
 resource identity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' = {
@@ -82,13 +99,23 @@ resource foundryModels 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
   name: aiName
   location: location
   tags: tags
-  kind: 'OpenAI'
+  kind: foundryKind
+  identity: { type: 'SystemAssigned' }
   sku: { name: 'S0' }
   properties: {
     customSubDomainName: aiName
     disableLocalAuth: true
     publicNetworkAccess: 'Enabled'
+    allowProjectManagement: foundryKind == 'AIServices' ? true : null
   }
+}
+
+resource foundryProject 'Microsoft.CognitiveServices/accounts/projects@2025-06-01' = if (foundryKind == 'AIServices') {
+  parent: foundryModels
+  name: foundryProjectName
+  location: location
+  identity: { type: 'SystemAssigned' }
+  properties: {}
 }
 
 @batchSize(1)
@@ -97,18 +124,19 @@ resource models 'Microsoft.CognitiveServices/accounts/deployments@2025-06-01' = 
   name: model.name
   sku: { name: model.skuName, capacity: model.capacity }
   properties: {
-    model: { format: 'OpenAI', name: model.modelName, version: model.modelVersion }
+    model: { format: model.?modelFormat ?? 'OpenAI', name: model.modelName, version: model.modelVersion }
     versionUpgradeOption: 'NoAutoUpgrade'
   }
+  dependsOn: [foundryProject]
 }]
 
 resource modelAccess 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-  name: guid(foundryModels.id, identity.id, 'openai-user')
+  name: guid(foundryModels.id, identity.id, modelRoleId)
   scope: foundryModels
   properties: {
     principalId: identity.properties.principalId
     principalType: 'ServicePrincipal'
-    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '5e0bd9bd-7b93-4f28-af87-19fc36ad61bd')
+    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', modelRoleId)
   }
 }
 resource imagePull 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
@@ -166,7 +194,8 @@ resource app 'Microsoft.App/containerApps@2025-07-01' = if (deployApp) {
         env: [
           { name: 'PORT', value: '8080' }
           { name: 'AGORA_REQUIRE_AI', value: 'true' }
-          { name: 'AZURE_FOUNDRY_BASE_URL', value: 'https://${aiName}.openai.azure.com/openai/v1' }
+          { name: 'AZURE_FOUNDRY_BASE_URL', value: modelBaseUrl }
+          { name: 'AZURE_FOUNDRY_TOKEN_SCOPE', value: modelTokenScope }
           { name: 'AZURE_FOUNDRY_AUTH_MODE', value: 'managed_identity' }
           { name: 'AZURE_CLIENT_ID', value: identity.properties.clientId }
           { name: 'AZURE_FOUNDRY_READER_DEPLOYMENT', value: readerDeployment }
@@ -174,6 +203,8 @@ resource app 'Microsoft.App/containerApps@2025-07-01' = if (deployApp) {
           { name: 'AZURE_FOUNDRY_REVIEWER_DEPLOYMENT', value: reviewerDeployment }
           { name: 'AZURE_FOUNDRY_REASONING_DEPLOYMENTS', value: reasoningDeployments }
           { name: 'AZURE_FOUNDRY_REASONING_EFFORT', value: reasoningEffort }
+          { name: 'AGORA_MODEL_TIMEOUT_SECONDS', value: string(modelTimeoutSeconds) }
+          { name: 'AGORA_ANSWER_BUDGET_SECONDS', value: string(answerBudgetSeconds) }
           { name: 'AZURE_MONITOR_AUTH_MODE', value: 'managed_identity' }
           { name: 'APPLICATIONINSIGHTS_CONNECTION_STRING', secretRef: 'app-insights' }
           { name: 'OTEL_SERVICE_NAME', value: 'agora-match' }
@@ -201,6 +232,8 @@ resource app 'Microsoft.App/containerApps@2025-07-01' = if (deployApp) {
 output registryName string = registry.name
 output registryLoginServer string = registry.properties.loginServer
 output containerAppName string = appName
-output foundryEndpoint string = 'https://${aiName}.openai.azure.com/openai/v1'
+output foundryEndpoint string = modelBaseUrl
+output foundryAccountName string = foundryModels.name
+output modelTokenAudience string = modelTokenScope
 output applicationInsightsName string = insights.name
 output appUrl string = deployApp ? 'https://${app!.properties.configuration.ingress!.fqdn}' : ''

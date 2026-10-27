@@ -77,8 +77,11 @@ class FoundrySettings:
             suffixes = (".openai.azure.com", ".services.ai.azure.com", ".cognitiveservices.azure.com")
             try:
                 u = urlsplit(self.base_url)
+                project_path = (u.hostname or "").endswith(".services.ai.azure.com") and re.fullmatch(
+                    r"/api/projects/[A-Za-z0-9][A-Za-z0-9_-]{0,63}/openai/v1", u.path)
                 invalid = (u.scheme != "https" or not (u.hostname or "").endswith(suffixes) or u.port not in {None, 443}
-                           or u.username or u.password or u.query or u.fragment or u.path != "/openai/v1")
+                           or u.username or u.password or u.query or u.fragment
+                           or (u.path != "/openai/v1" and not project_path))
             except ValueError:
                 invalid = True
             if invalid:

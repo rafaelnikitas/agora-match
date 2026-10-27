@@ -10,7 +10,7 @@ There are three separate checks. Passing one does not establish the others.
 
 ## Fastest path: use an existing deployment
 
-An authorized Azure user needs an existing compatible Foundry/Azure OpenAI model deployment, its resource endpoint, and permission to invoke it. For this adapter, use the Azure OpenAI v1 endpoint ending in `/openai/v1`. A project URL alone is not the model endpoint.
+An authorized Azure user needs an existing compatible Foundry/Azure OpenAI model deployment, its model endpoint, and permission to invoke it. This adapter accepts the resource v1 endpoint ending in `/openai/v1`, or a Foundry project model endpoint such as `https://RESOURCE.services.ai.azure.com/api/projects/agora-match/openai/v1`. The project overview URL without `/openai/v1` is not the model endpoint. Project endpoints require `AZURE_FOUNDRY_TOKEN_SCOPE=https://ai.azure.com/.default` and resource-scoped Cognitive Services User access on the dedicated AI account; Azure OpenAI resource endpoints use the default cognitive-services token audience and Cognitive Services OpenAI User role.
 
 Sign in with the official Azure CLI in your own development environment, install the application requirements, and export:
 
