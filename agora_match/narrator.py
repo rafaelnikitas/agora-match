@@ -100,7 +100,7 @@ class FoundryNarrator:
             with span("agora.answer", mode=self.mode()):
                 if self.pipeline_configured():
                     reader = self._stage("match_analyst", self.config.reader,
-                        "Read the verified match evidence. Return one concise observation and preserve uncertainty.",
+                        "Read the verified match evidence. Return exactly one plain sentence of at most 240 characters, with a measured observation and sample limitation. Do not include digits, identifiers, headings, bullets, or markdown. Audience formatting is handled by the next role.",
                         {"task":task,"evidence":evidence},110,deadline,stages)
                     if not self._valid_text(reader,evidence,420):
                         raise ProviderError("analyst_evidence_bounds")

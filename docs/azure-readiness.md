@@ -33,7 +33,7 @@ The default is `gpt-5.4-mini`, version `2026-03-17`, GlobalStandard capacity `5`
 
 ### Free-trial profile
 
-`infra/parameters.trial.json` selects a Foundry AIServices account and `agora-match` project, with `gpt-oss-120b`, format `OpenAI-OSS`, version `1`, GlobalStandard capacity `10`. All three application roles share this deployment. The app uses the project's OpenAI-compatible v1 endpoint and Entra token audience `https://ai.azure.com/.default`. It allows one container replica, scales to zero, and uses a 15-second HTTP timeout and 45-second answer budget.
+`infra/parameters.trial.json` selects a Foundry AIServices account and `agora-match` project, with `gpt-oss-120b`, format `OpenAI-OSS`, version `1`, GlobalStandard capacity `50`. All three application roles share this deployment. The app uses the project's OpenAI-compatible v1 endpoint and Entra token audience `https://ai.azure.com/.default`. It allows one container replica, scales to zero, and uses a 15-second HTTP timeout and 45-second answer budget.
 
 This profile was prepared after checking a free-trial subscription's actual Sweden Central quota and model catalog on 27 October 2026: GPT-OSS quota was positive while the checked GPT model quotas were zero. This is **not** a guarantee for other subscriptions or proof of a successful live model request. Recheck your own quota, regional policy, and model access. A trial profile still consumes credit for eligible services; it does not make ACR, inference, builds, or logs universally free. Keep the trial spending limit enabled; these scripts never upgrade the account or remove it.
 
@@ -91,6 +91,14 @@ bash scripts/deploy-azure.sh
 ```
 
 The script validates model wiring, compiles Bicep, creates the foundation, builds the container remotely in ACR, resolves an immutable image digest, and deploys that exact digest. Docker is not needed on the caller's machine. It then checks readiness and makes a fresh request that must complete all three AI roles. A static page or fallback answer cannot pass the real-AI gate. Deployment outputs are saved under ignored `.azure/`; no model keys are printed.
+
+### Build route for trial credits
+
+Microsoft currently [pauses ACR Tasks runs on free credits](https://microsoftlearning.github.io/mslearn-azure-ai/instructions/container-hosting/01-acr-tasks.html). A trial subscription can use a container built elsewhere and pushed to its private registry. CI exports the Docker image **after** its HTTP smoke test as the `agora-match-container` artifact, retained for three days. No Azure credentials or package-publishing permissions are added to CI.
+
+Download the artifact from a successful main-branch CI run. Check out that run's full source SHA, verify the supplied checksum, and decompress the image with `gzip -dk agora-match-image.tar.gz`. Install Google's official [crane](https://github.com/google/go-containerregistry/tree/main/cmd/crane) CLI, then set `AGORA_IMAGE_ARCHIVE` to the absolute path of the uncompressed `.tar` before running the deploy script. Also select `infra/parameters.trial.json`. The script checks the image's source label and platform, uses the current Azure login to push it, removes its temporary registry credentials, and deploys by digest. It does not enable registry admin passwords or change the trial spending limit.
+
+For a local Docker build, use `docker build --label "org.opencontainers.image.revision=$(git rev-parse HEAD)" -t agora-match:local .` and `docker save -o agora-match-image.tar agora-match:local`, then pass the resulting archive through the same route.
 
 RBAC propagation, image availability, cold starts, quota, and provider policy can cause a first deployment to fail. Read the failure and the Container Apps revision logs before changing settings. If resources are healthy and only a new role grant is still propagating, wait for that grant to take effect and rerun the smoke command below. Re-running the deploy script is intended to update the same resources; it does not delete the resource group.
 

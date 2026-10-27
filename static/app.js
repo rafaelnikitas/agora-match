@@ -679,7 +679,7 @@ async function narrate(insightId, button) {
   button.disabled = true; button.textContent = "Preparing narration…";
   try {
     const narratorView = ({analyst: "explorer", coach: "studio"})[viewSelect.value] || viewSelect.value;
-    const response = await fetch("/api/narrate", {signal:AbortSignal.timeout(35000),method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({insight_id: insightId, analysis_time_seconds:activeGame.analysis_context.seconds,language:answerLanguage,game_id: gameSelect.value, view: narratorView, simplify: simpleLanguage})});
+    const response = await fetch("/api/narrate", {signal:AbortSignal.timeout(55000),method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({insight_id: insightId, analysis_time_seconds:activeGame.analysis_context.seconds,language:answerLanguage,game_id: gameSelect.value, view: narratorView, simplify: simpleLanguage})});
     const data = await response.json();
     if (!response.ok) throw new Error(data.error || "Narration unavailable");
     result.innerHTML = esc(data.text) + " <span class=\"narration-source\">" + (data.model_used ? "Microsoft Foundry" : "Evidence-based fallback") + "</span>";
@@ -770,7 +770,7 @@ async function createCommentary(speak = false) {
   let answer;
   if (serverAvailable) {
     try {
-      const response = await fetch("/api/ask", {signal:AbortSignal.timeout(35000),method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({analysis_time_seconds:activeGame.analysis_context.seconds,language:answerLanguage,game_id:gameSelect.value,persona:viewSelect.value,player_id:playerSelect.value,question:prompt,simplify:simpleLanguage})});
+      const response = await fetch("/api/ask", {signal:AbortSignal.timeout(55000),method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({analysis_time_seconds:activeGame.analysis_context.seconds,language:answerLanguage,game_id:gameSelect.value,persona:viewSelect.value,player_id:playerSelect.value,question:prompt,simplify:simpleLanguage})});
       const payload = await response.json();
       if (!response.ok) throw new Error(payload.error || "Narration endpoint unavailable");
       answer = payload.text;
@@ -816,7 +816,7 @@ $("#chat-form").addEventListener("submit", async (event) => {
   let result;
   if (serverAvailable) {
     try {
-      const response = await fetch("/api/ask", {signal:AbortSignal.timeout(35000),method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({analysis_time_seconds:activeGame.analysis_context.seconds,language:answerLanguage,game_id:requestGameId,persona,player_id:playerSelect.value,question,conversation,simplify:simpleLanguage})});
+      const response = await fetch("/api/ask", {signal:AbortSignal.timeout(55000),method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({analysis_time_seconds:activeGame.analysis_context.seconds,language:answerLanguage,game_id:requestGameId,persona,player_id:playerSelect.value,question,conversation,simplify:simpleLanguage})});
       const payload = await response.json();
       if (!response.ok) throw new Error(payload.error || "Chat endpoint unavailable");
       result = payload;
