@@ -98,22 +98,40 @@ class FoundryNarrator:
                     except ValueError:
                         raise ProviderError("analyst_evidence_bounds") from None
                     writer_evidence = evidence | {"facts":selected}
-                    raw_draft = self._stage("audience_narrator",self.config.writer,
-                        "Explain the analyst-selected evidence for the supplied audience." + WRITER_CONTRACT,
-                        {"task":task,"evidence":writer_evidence,"analyst_fact_ids":[f['fact_id'] for f in selected]},220,deadline,stages)
-                    try:
-                        draft, selected_ids = assemble_draft(raw_draft,writer_evidence,max_length)
-                    except ValueError:
-                        raise ProviderError("narrator_evidence_bounds") from None
-                    verdict = self._stage("evidence_reviewer",self.config.reviewer,
-                        'Check every claim in the draft against the verified evidence, including the team, player, timing, sample, and caveat. Reject if uncertain. Return JSON only: {"approved":true} or {"approved":false}.',
-                        {"evidence":evidence,"draft":draft},100,deadline,stages)
-                    try:
-                        approved = json.loads(verdict).get("approved") is True
-                    except (ValueError, AttributeError):
-                        approved = False
-                    if not approved:
-                        raise ProviderError("reviewer_rejected")
+                    writer_payload = {"task":task,"evidence":writer_evidence,"analyst_fact_ids":[f['fact_id'] for f in selected]}
+                    failure = None
+                    for revision in range(2):
+                        if failure:
+                            writer_payload = writer_payload | {"revision_feedback": (
+                                "The previous draft failed a check. Write a neutral qualitative sentence without digits, "
+                                "number words, shirt IDs or numerical football terms. Do not repeat statistics in the lead. "
+                                "Use only the selected fact IDs. Do not infer habits, causes, an advantage or a higher "
+                                "chance of scoring from a short sample.")}
+                        raw_draft = self._stage("audience_narrator",self.config.writer,
+                            "Explain the analyst-selected evidence for the supplied audience." + WRITER_CONTRACT,
+                            writer_payload,220,deadline,stages)
+                        try:
+                            draft, selected_ids = assemble_draft(raw_draft,writer_evidence,max_length)
+                        except ValueError:
+                            failure = "narrator_evidence_bounds"
+                            stages[-1].update(status="rejected",reason=failure)
+                        else:
+                            verdict = self._stage("evidence_reviewer",self.config.reviewer,
+                                'Check every claim against the verified evidence, including team, player, timing, sample and caveat. A short sample does not prove a habit, cause, advantage or higher scoring likelihood. Reject if uncertain. Return JSON only: {"approved":true} or {"approved":false}.',
+                                {"evidence":evidence,"draft":draft},100,deadline,stages)
+                            try:
+                                decision = json.loads(verdict)
+                                if not isinstance(decision,dict) or type(decision.get("approved")) is not bool:
+                                    raise ValueError()
+                            except (ValueError,AttributeError):
+                                raise ProviderError("reviewer_rejected") from None
+                            if decision["approved"]:
+                                break
+                            failure = "reviewer_rejected"
+                            stages[-1].update(status="rejected",reason=failure)
+                        event("agent_validation",stage=stages[-1]["stage"],reason=failure)
+                        if revision:
+                            raise ProviderError(failure)
                     roles = ["match analyst","audience narrator","evidence reviewer"]
                 else:
                     raw_draft = self._stage("audience_narrator",self.config.deployment,

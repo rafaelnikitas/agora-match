@@ -291,7 +291,7 @@ function chatEvidence(question) { return localChatAnswer(question,viewSelect.val
 function aiTraceMarkup(message) {
   if (!message.agent_trace?.length) return "";
   const labels = {match_analyst:"Match analyst",audience_narrator:"Your narrator",evidence_reviewer:"Evidence checker"};
-  return `<details class="answer-sources ai-trace"><summary>How this answer was checked</summary>${message.agent_trace.map(row=>`<div><strong>${esc(labels[row.stage] || row.stage)}</strong><span>${esc(row.status === "completed" ? "Completed" : "Fallback")} · ${esc(row.duration_ms)} ms</span></div>`).join("")}${!message.model_used ? '<p class="answer-limit">AI could not complete the checks. You are seeing the evidence template.</p>' : ""}</details>`;
+  return `<details class="answer-sources ai-trace"><summary>How this answer was checked</summary>${message.agent_trace.map(row=>`<div><strong>${esc(labels[row.stage] || row.stage)}</strong><span>${esc(row.status === "completed" ? "Completed" : row.status === "rejected" ? "Rejected" : "Fallback")} · ${esc(row.duration_ms)} ms</span></div>`).join("")}${!message.model_used ? '<p class="answer-limit">AI could not complete the checks. You are seeing the evidence template.</p>' : ""}</details>`;
 }
 
 function renderChat() {

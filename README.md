@@ -14,7 +14,7 @@ In ancient Greece, the agora was a public gathering place where people exchanged
 
 [See the welcome screen](docs/images/agora-welcome.jpg). The app includes a keyboard-accessible “Why Agora? / Αγορά” explanation and a “Change perspective” control throughout the experience.
 
-**[▶ Try the app](https://agoramatch.russettitan64.chatgpt.site/)** · **[Watch the 97-second demo](https://agoramatch.russettitan64.chatgpt.site/showcase.html)** · [Submission materials](SUBMISSION.md)
+**[▶ Try the Azure app](https://agora-demo-d3ysdvzmwpuoi.orangewater-9594c3f1.swedencentral.azurecontainerapps.io/)** · [Static fallback demo](https://agoramatch.russettitan64.chatgpt.site/) · **[Watch the 97-second demo](https://agoramatch.russettitan64.chatgpt.site/showcase.html)** · [Submission materials](SUBMISSION.md)
 
 ![Agora Match: synthetic pitch replay beside historical corner context](docs/images/agora-fan-workspace.jpg)
 
@@ -43,7 +43,7 @@ The second fictional fixture, **Harbor City vs Redvale**, demonstrates a free-ki
 
 An optional **Microsoft Foundry** workflow explains a bounded evidence bundle through three roles: **match analyst → audience narrator → evidence reviewer**. Application code supplies the statistics, inserts canonical fact values, checks references, and provides fallback wording. The LLM's job is to make the evidence understandable for the selected audience.
 
-**Execution status:** the one-click public demo uses deterministic answers and requires no account or key. Foundry integration, Azure Identity, Azure Container Apps Bicep, monitoring, and deployment/evaluation scripts are included in the source. Live Foundry evaluation and Azure deployment remain unverified. The project does not claim live-model accuracy or measured multi-agent superiority.
+**Execution status:** the Azure app uses Microsoft Foundry with keyless managed identity, and a fresh request has completed the three model roles. The separate static fallback demo uses deterministic answers. Live acceptance checks measure evidence routing, model/fallback rate, and latency; they do not establish qualitative accuracy or measured multi-agent superiority.
 
 [Verify real Foundry calls](docs/foundry-verification.md) using an existing deployment or the manual GitHub verification workflow.
 
@@ -99,7 +99,7 @@ node tests/browser_evidence.cjs
 python scripts/verify_intelligence.py
 ```
 
-Local release results: **66 unit/API tests**, **82 synthetic acceptance examples**, and **73 browser-fallback checks** passed. These checks cover deterministic behavior and mocked model failure modes; they are not a live LLM accuracy score. [Accuracy and evaluation](docs/accuracy-and-evaluation.md).
+Local release results: **67 unit/API tests**, **82 synthetic acceptance examples**, and **73 browser-fallback checks** passed. These checks cover deterministic behavior and mocked model failure modes; they are not a live LLM accuracy score. [Accuracy and evaluation](docs/accuracy-and-evaluation.md).
 
 ## Repository map
 

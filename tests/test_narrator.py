@@ -86,7 +86,7 @@ class NarratorTests(unittest.TestCase):
 
     def test_reviewer_rejection_retains_original_facts_and_text(self):
         config = replace(BASE,reader='reader',writer='writer',reviewer='reviewer')
-        model,_ = model_with([response('{"fact_ids":["FA"]}'),response('The corner record adds context to this chance.'),response('{"approved":false}')],config)
+        model,_ = model_with([response('{"fact_ids":["FA"]}'),response('The corner record adds context to this chance.'),response('{"approved":false}'),response('The small sample is context for review.'),response('{"approved":false}')],config)
         result = model.answer('Why?','coach',self.grounded)
         self.assertFalse(result['model_used'])
         self.assertEqual(result['reason'],'reviewer_rejected')
@@ -105,9 +105,21 @@ class NarratorTests(unittest.TestCase):
                 self.assertEqual(result['facts'],self.grounded['facts'])
                 self.assertEqual(len(calls),1)
         model,calls = model_with([response('{"fact_ids":["FA"]}'),
-            response('{"lead":"The recent record adds context.","fact_ids":["FB"]}')],config)
+            response('{"lead":"The recent record adds context.","fact_ids":["FB"]}'),response('{"lead":"The recent record adds context.","fact_ids":["FB"]}')],config)
         self.assertEqual(model.answer('Why?','fan',self.grounded)['reason'],'narrator_evidence_bounds')
-        self.assertEqual(len(calls),2)
+        self.assertEqual(len(calls),3)
+
+    def test_one_bounded_revision_recovers_without_weakening_fact_checks(self):
+        config = replace(BASE,reader='reader',writer='writer',reviewer='reviewer')
+        model,calls = model_with([response('{"fact_ids":["FA"]}'),response('There were 999 goals.'),
+            response('The recent corner record adds context.'),response('{"approved":true}')],config)
+        result=model.answer('Why is this corner important?','fan',self.grounded)
+        self.assertTrue(result['model_used'])
+        self.assertNotIn('999',result['text'])
+        self.assertEqual([r['status'] for r in result['agent_trace']],['completed','rejected','completed','completed'])
+        self.assertIn('revision_feedback',json.loads(json.loads(calls[2].content)['messages'][1]['content']))
+        self.assertEqual(result['facts'],self.grounded['facts'])
+        self.assertEqual(len(calls),4)
 
     def test_reasoning_profile_omits_temperature_and_changes_token_parameter(self):
         model,calls = model_with([response('The match has synthetic context.')],replace(BASE,reasoning_deployments=frozenset({'chat'})))

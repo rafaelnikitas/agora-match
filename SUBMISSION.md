@@ -10,7 +10,8 @@ The ancient Greek agora was a public gathering place for conversation, ideas, an
 
 ## Links
 
-- Working app: https://agoramatch.russettitan64.chatgpt.site/
+- Working Azure app: https://agora-demo-d3ysdvzmwpuoi.orangewater-9594c3f1.swedencentral.azurecontainerapps.io/
+- Static fallback demo: https://agoramatch.russettitan64.chatgpt.site/
 - Public source: https://github.com/rafaelnikitas/agora-match
 - Narrated walkthrough: https://agoramatch.russettitan64.chatgpt.site/showcase.html
 - **Required video platform URL: pending upload to YouTube, Vimeo, Facebook Video, or Youku.** The self-hosted walkthrough above is a review copy; it does not replace that submission requirement.
@@ -31,7 +32,7 @@ An isolated statistic rarely explains why a moment matters. Fans need a concise 
 
 The optional Python service integrates Microsoft Foundry model deployments through Azure Identity. Three bounded roles perform analysis, audience narration, and evidence review. Deterministic code supplies canonical fact values and source IDs; rejected or unavailable model output falls back to an evidence-based response. Azure Container Apps infrastructure is defined in Bicep, with managed identity, monitoring, health checks, and deployment scripts.
 
-**The public static demo uses deterministic responses. A live Foundry deployment, live model-quality evaluation, and production Azure deployment have not been verified.** Do not describe these as completed cloud execution. The included evaluation harness can compare the single-model and three-role paths once credentials are configured.
+**The Azure app is deployed and actual Foundry model calls have been verified with managed identity.** The separate public static demo uses deterministic responses. Live acceptance evaluation measures routing, execution/fallback rate and latency; it does not establish semantic accuracy. A single-versus-three-role quality comparison and independent human review remain separate work.
 
 ## Data statement
 
@@ -39,7 +40,7 @@ All teams, players, matches, histories, events, positions, ratings, and telemetr
 
 ## Verification
 
-Local release checks: 66 unit/API tests, 82 synthetic acceptance examples, and 73 browser-fallback assertions passed. These are regression checks over synthetic fixtures and mocked model failures; they do not measure live LLM accuracy. See [evaluation details](docs/accuracy-and-evaluation.md).
+Local release checks: 67 unit/API tests, 82 synthetic acceptance examples, and 73 browser-fallback assertions passed. These are regression checks over synthetic fixtures and mocked model failures; they do not measure live LLM accuracy. See [evaluation details](docs/accuracy-and-evaluation.md).
 
 ## Practical adoption path
 
@@ -48,7 +49,7 @@ The initial user is a digital match-content producer who needs concise, sourced 
 ## Remaining entry steps
 
 1. Upload the finished 1:37 MP4 to an accepted video platform and paste its public URL into the entry.
-2. Configure and run Foundry if the entry is to claim demonstrated live Microsoft AI execution. Capture the resulting trace and evaluation, without publishing credentials.
+2. Use the Azure app and its retained live verification evidence when describing demonstrated Microsoft AI execution; review the documented limitations.
 3. Paste the pitch, app URL, public source URL, technology description, and video URL into the hackathon project page.
 4. The entrant must verify eligibility/team details, answer ownership and rule attestations, and perform the final portal submission.
 
