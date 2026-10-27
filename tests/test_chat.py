@@ -1,7 +1,7 @@
 import unittest
 
-from playerlens.catalog import build_catalog
-from playerlens.chat import answer_question, retrieve_evidence
+from agora_match.catalog import build_catalog
+from agora_match.chat import answer_question, retrieve_evidence
 
 
 class MatchChatTests(unittest.TestCase):

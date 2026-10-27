@@ -47,7 +47,7 @@ After installing `requirements.txt` into a Python 3.12 environment:
 ```bash
 python -m unittest discover -s tests -q
 python scripts/verify_intelligence.py
-python -m playerlens.build_site
+python -m agora_match.build_site
 node tests/browser_evidence.cjs
 ```
 

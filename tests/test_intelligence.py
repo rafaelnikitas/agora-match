@@ -1,6 +1,6 @@
 import unittest
 
-from playerlens.catalog import build_catalog
+from agora_match.catalog import build_catalog
 
 
 class PlayerIntelligenceTests(unittest.TestCase):

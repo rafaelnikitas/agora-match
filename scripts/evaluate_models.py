@@ -8,11 +8,11 @@ import sys
 import time
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from playerlens.catalog import build_catalog
-from playerlens.chat import answer_question
-from playerlens.config import FoundrySettings, AppSettings
-from playerlens.narrator import FoundryNarrator
-from playerlens.projection import project_game
+from agora_match.catalog import build_catalog
+from agora_match.chat import answer_question
+from agora_match.config import FoundrySettings, AppSettings
+from agora_match.narrator import FoundryNarrator
+from agora_match.projection import project_game
 
 CASES=[
     {"id":"corner","question":"Why is this corner important?","seconds":4062,"role":"fan"},
@@ -52,6 +52,7 @@ def main():
                     report['results'].append({'case':case['id'],'mode':mode,'language':grounded['language'],
                         'model_used':answer['model_used'],'latency_ms':round((time.monotonic()-start)*1000),
                         'token_usage':sum(s.get('total_tokens',0) for s in answer.get('agent_trace',[])),
+                        'agent_trace':answer.get('agent_trace',[]),
                         'reason':answer.get('reason'),'output':answer['text'],'facts':grounded['facts'],
                         'claim_contract_passed':answer.get('validation',{}).get('fact_values')=='rendered_verbatim',
                         'reviewer_approved':answer.get('validation',{}).get('reviewer_approved',False),

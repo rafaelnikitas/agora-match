@@ -35,6 +35,8 @@ An optional **Microsoft Foundry** workflow explains a bounded evidence bundle th
 
 **Execution status:** the one-click public demo uses deterministic answers and requires no account or key. Foundry integration, Azure Identity, Azure Container Apps Bicep, monitoring, and deployment/evaluation scripts are included in the source. Live Foundry evaluation and Azure deployment remain unverified. The project does not claim live-model accuracy or measured multi-agent superiority.
 
+[Verify real Foundry calls](docs/foundry-verification.md) using an existing deployment or the manual GitHub verification workflow.
+
 ## What makes the evidence inspectable
 
 - **One match clock:** chat, stats, recaps, heatmaps, ratings, and exports use the selected replay cutoff. Future events disappear when you rewind.
@@ -51,7 +53,7 @@ All clubs, players, history, coordinates, events, and telemetry are **fictional 
 ```bash
 git clone https://github.com/rafaelnikitas/agora-match.git
 cd agora-match
-python -m playerlens.build_site
+python -m agora_match.build_site
 python -m http.server 8080 --directory dist
 ```
 
@@ -63,8 +65,8 @@ Open **http://localhost:8080**. The build regenerates all synthetic JSON from th
 python3.12 -m venv .venv
 source .venv/bin/activate
 python -m pip install --require-hashes -r requirements.txt
-python -m playerlens.build_static
-python -m playerlens.server
+python -m agora_match.build_static
+python -m agora_match.server
 ```
 
 On Windows, activate with `.venv\Scripts\activate`. See [Azure setup](docs/azure-readiness.md) for identity, model deployment variables, and infrastructure. Never put credentials in client code. The default server also works without AI credentials.
@@ -82,7 +84,7 @@ The image generates synthetic data during its build. Cloud provisioning is optio
 
 ```bash
 python -m unittest discover -s tests -q
-python -m playerlens.build_site
+python -m agora_match.build_site
 node tests/browser_evidence.cjs
 python scripts/verify_intelligence.py
 ```
@@ -93,7 +95,7 @@ Local release results: **64 unit/API tests**, **82 synthetic acceptance examples
 
 | Path | Purpose |
 |---|---|
-| `playerlens/` | Synthetic generators, evidence retrieval, calculations, chat, Foundry adapter, API, and static builder |
+| `agora_match/` | Synthetic generators, evidence retrieval, calculations, chat, Foundry adapter, API, and static builder |
 | `static/` | Role-specific browser UI, pitch replay, charts, chat, and demo viewer |
 | `tests/` | Regression checks for evidence, replay time, UI fallback contracts, and model failure behavior |
 | `infra/` | Azure Container Apps, model resources, managed identity, monitoring, and parameter examples |
@@ -101,7 +103,7 @@ Local release results: **64 unit/API tests**, **82 synthetic acceptance examples
 | `docs/` | Data contract, Azure setup, evaluation details, role design, screenshots, and demo credits |
 | `SUBMISSION.md` | Pitch, honest technology status, business path, and remaining entry steps |
 
-Generated `static/data/` and `dist/` are build outputs. Recreate them with `python -m playerlens.build_site`.
+Generated `static/data/` and `dist/` are build outputs. Recreate them with `python -m agora_match.build_site`.
 
 ## Read more
 

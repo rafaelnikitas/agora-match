@@ -131,7 +131,7 @@ applyFlavor();
 function enterRole(role, keepScreen = false) {
   if (!["fan", "analyst", "coach"].includes(role)) role = "fan";
   viewSelect.value = role;
-  localStorage.setItem("playerlens-role", role);
+  localStorage.setItem("agora-match-role", role);
   $("#onboarding").hidden = true;
   $(".page").hidden = false;
   $("#screen-nav").hidden = false;
@@ -961,7 +961,7 @@ async function init() {
     const requestedView = params.get("view");
     if (["fan", "analyst", "coach"].includes(requestedView)) viewSelect.value = requestedView;
     else if (requestedView === "explorer" || requestedView === "studio") viewSelect.value = requestedView === "explorer" ? "analyst" : "coach";
-    else if (["fan", "analyst", "coach"].includes(localStorage.getItem("playerlens-role"))) viewSelect.value = localStorage.getItem("playerlens-role");
+    else if (["fan", "analyst", "coach"].includes(localStorage.getItem("agora-match-role"))) viewSelect.value = localStorage.getItem("agora-match-role");
     requestedPlayer = params.get("player") || "";
     if(params.has("at") && /^\d+$/.test(params.get("at"))) requestedSecond=Number(params.get("at"));
     activeScreen = screenNames.includes(params.get("screen")) ? params.get("screen") : AgoraExperience.config[viewSelect.value].home;
@@ -975,7 +975,7 @@ async function init() {
     } catch (_error) { /* Public static preview has no server-side Foundry proxy. */ }
     document.querySelectorAll("[data-enter-role]").forEach(button=>{ button.disabled = false; });
     $("#onboarding-status").textContent = "Two matches ready. Choose your workspace.";
-    const hasRole = ["fan", "analyst", "coach", "explorer", "studio"].includes(requestedView) || ["fan", "analyst", "coach"].includes(localStorage.getItem("playerlens-role"));
+    const hasRole = ["fan", "analyst", "coach", "explorer", "studio"].includes(requestedView) || ["fan", "analyst", "coach"].includes(localStorage.getItem("agora-match-role"));
     if (hasRole) enterRole(viewSelect.value, true);
     else { $(".page").hidden = true; $("#screen-nav").hidden = true; $("#change-role").hidden = true; $("#onboarding").hidden = false; }
   } catch (error) { $(".page").hidden = true; $("#onboarding").hidden = false; $("#onboarding-status").textContent = "The match data could not load. Reload to try again."; $("#reload-data").hidden = false; }

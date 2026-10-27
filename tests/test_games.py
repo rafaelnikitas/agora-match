@@ -1,7 +1,7 @@
 import unittest
 
-from playerlens.catalog import build_catalog
-from playerlens.player_profiles import build_player_profiles
+from agora_match.catalog import build_catalog
+from agora_match.player_profiles import build_player_profiles
 
 
 class DemoCatalogTests(unittest.TestCase):

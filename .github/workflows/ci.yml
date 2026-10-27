@@ -16,7 +16,7 @@ jobs:
       - run: python -m pip install --require-hashes -r requirements.txt
       - run: python -m unittest discover -s tests -q
       - run: node --check static/app.js && node --check static/experience.js && node --check static/evidence.js
-      - run: python -m playerlens.build_site
+      - run: python -m agora_match.build_site
       - run: node tests/browser_evidence.cjs
       - run: python scripts/preflight.py
       - run: bash -n scripts/deploy-azure.sh

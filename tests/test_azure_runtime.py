@@ -6,12 +6,12 @@ from pathlib import Path
 import httpx
 
 from fastapi.testclient import TestClient
-from playerlens.api import create_app
-from playerlens.catalog import build_catalog
-from playerlens.config import AppSettings, FoundrySettings
-from playerlens.foundry_client import Admission, ProviderError
-from playerlens.narrator import FoundryNarrator
-from playerlens.telemetry import OperationFormatter
+from agora_match.api import create_app
+from agora_match.catalog import build_catalog
+from agora_match.config import AppSettings, FoundrySettings
+from agora_match.foundry_client import Admission, ProviderError
+from agora_match.narrator import FoundryNarrator
+from agora_match.telemetry import OperationFormatter
 from scripts.preflight import validate
 from tests.test_narrator import BASE, model_with, response
 

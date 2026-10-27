@@ -1,12 +1,12 @@
 import json
 import unittest
 from fastapi.testclient import TestClient
-from playerlens.acceptance import run_checks
-from playerlens.api import create_app
-from playerlens.catalog import build_catalog
-from playerlens.narrator import FoundryNarrator
-from playerlens.config import FoundrySettings
-from playerlens.projection import project_game
+from agora_match.acceptance import run_checks
+from agora_match.api import create_app
+from agora_match.catalog import build_catalog
+from agora_match.narrator import FoundryNarrator
+from agora_match.config import FoundrySettings
+from agora_match.projection import project_game
 
 
 class AccuracyTests(unittest.TestCase):

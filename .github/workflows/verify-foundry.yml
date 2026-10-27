@@ -1,0 +1,64 @@
+name: Verify live Foundry (model calls)
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Evaluation scope (uses billable model calls; provisions no resources)
+        type: choice
+        options: [compare, three-role, single]
+        default: compare
+permissions:
+  contents: read
+  id-token: write
+concurrency:
+  group: agora-foundry-verification
+  cancel-in-progress: false
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: azure-verification
+    env:
+      AZURE_FOUNDRY_BASE_URL: ${{ vars.AZURE_FOUNDRY_BASE_URL }}
+      AZURE_FOUNDRY_AUTH_MODE: default_credential
+      AZURE_FOUNDRY_DEPLOYMENT: ${{ vars.AZURE_FOUNDRY_DEPLOYMENT }}
+      AZURE_FOUNDRY_READER_DEPLOYMENT: ${{ vars.AZURE_FOUNDRY_READER_DEPLOYMENT || vars.AZURE_FOUNDRY_DEPLOYMENT }}
+      AZURE_FOUNDRY_WRITER_DEPLOYMENT: ${{ vars.AZURE_FOUNDRY_WRITER_DEPLOYMENT || vars.AZURE_FOUNDRY_DEPLOYMENT }}
+      AZURE_FOUNDRY_REVIEWER_DEPLOYMENT: ${{ vars.AZURE_FOUNDRY_REVIEWER_DEPLOYMENT || vars.AZURE_FOUNDRY_DEPLOYMENT }}
+      AZURE_FOUNDRY_REASONING_DEPLOYMENTS: ${{ vars.AZURE_FOUNDRY_REASONING_DEPLOYMENTS }}
+      AZURE_FOUNDRY_REASONING_EFFORT: ${{ vars.AZURE_FOUNDRY_REASONING_EFFORT }}
+      AGORA_MODEL_TIMEOUT_SECONDS: '15'
+      AGORA_ANSWER_BUDGET_SECONDS: '45'
+      EVALUATION_MODE: ${{ inputs.mode }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install --require-hashes -r requirements.txt
+      - name: Check endpoint and deployment settings
+        run: |
+          python - <<'PY'
+          from agora_match.config import FoundrySettings
+          settings = FoundrySettings.from_env()
+          if not settings.configured:
+              raise SystemExit('Configure Foundry endpoint and deployment variables in azure-verification. No model calls were made.')
+          PY
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - name: Exercise actual Foundry model roles
+        run: python scripts/evaluate_models.py --run-live --mode "$EVALUATION_MODE" --pause-seconds 8 --output build/live-model-evaluation.json
+      - name: Retain real outputs and stage evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agora-foundry-evaluation
+          path: build/live-model-evaluation.json
+          if-no-files-found: warn
+          retention-days: 30

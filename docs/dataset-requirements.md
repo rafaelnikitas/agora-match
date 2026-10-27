@@ -43,7 +43,7 @@ For a “player had these options when receiving the ball” view, include synch
 
 ## Checked-in synthetic feed files
 
-The static visitor app ships six generated JSON files under `static/data/`. `python -m playerlens.build_static` regenerates them deterministically from the same scenario seed. Each feed is marked `data_mode: "synthetic"`; team and player identifiers are fictional and scoped to a game.
+The static visitor app ships six generated JSON files under `static/data/`. `python -m agora_match.build_static` regenerates them deterministically from the same scenario seed. Each feed is marked `data_mode: "synthetic"`; team and player identifiers are fictional and scoped to a game.
 
 | File | Shape and key fields | UI use |
 |---|---|---|

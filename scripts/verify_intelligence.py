@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from playerlens.acceptance import run_checks
+from agora_match.acceptance import run_checks
 
 if __name__ == "__main__":
     report=run_checks()

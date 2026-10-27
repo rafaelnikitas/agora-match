@@ -1,7 +1,7 @@
 import unittest
 
-from playerlens.catalog import build_catalog
-from playerlens.feeds import build_live_feed_files
+from agora_match.catalog import build_catalog
+from agora_match.feeds import build_live_feed_files
 
 
 class SyntheticFeedTests(unittest.TestCase):

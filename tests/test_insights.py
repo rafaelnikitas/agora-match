@@ -1,7 +1,7 @@
 import unittest
 
-from playerlens.insights import InsightCoordinator, HistoricalContextAgent, LivePatternAgent, PlayerLoadAgent, ShapeAgent
-from playerlens.synthetic import build_demo_state
+from agora_match.insights import InsightCoordinator, HistoricalContextAgent, LivePatternAgent, PlayerLoadAgent, ShapeAgent
+from agora_match.synthetic import build_demo_state
 
 
 class SyntheticStateTests(unittest.TestCase):

@@ -4,11 +4,11 @@ from dataclasses import replace
 
 import httpx
 
-from playerlens.catalog import build_catalog
-from playerlens.chat import answer_question
-from playerlens.config import AppSettings, FoundrySettings
-from playerlens.foundry_client import AzureModelClient, ProviderError
-from playerlens.narrator import FoundryNarrator
+from agora_match.catalog import build_catalog
+from agora_match.chat import answer_question
+from agora_match.config import AppSettings, FoundrySettings
+from agora_match.foundry_client import AzureModelClient, ProviderError
+from agora_match.narrator import FoundryNarrator
 
 BASE = FoundrySettings(base_url='https://example.openai.azure.com/openai/v1',api_key='test-secret',deployment='chat')
 

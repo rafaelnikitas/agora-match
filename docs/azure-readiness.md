@@ -42,7 +42,7 @@ python -m pip install --require-hashes -r requirements.txt
 python -m unittest discover -s tests -q
 node --check static/app.js
 node --check static/experience.js
-python -m playerlens.server
+python -m agora_match.server
 ```
 
 Open `http://localhost:8080`. No Azure account is required for deterministic mode. The server does not automatically load `.env`; export the variables you need. See `.env.example` for the supported settings. Local model access can use `AZURE_FOUNDRY_AUTH_MODE=default_credential` after `az login` and an explicit OpenAI User grant on the model resource. The Azure deployment uses managed identity instead.
@@ -136,7 +136,7 @@ An administrator must configure an Entra application or deployment identity with
 | `AZURE_RESOURCE_GROUP` | Dedicated resource group |
 | `AZURE_LOCATION` | Confirmed model-supported region |
 
-Use environment protection for the production workflow as appropriate. No long-lived Azure credential secret is required. The workflows cannot execute until the source is in a GitHub repository with this setup; adding YAML alone does not establish a successful CI run.
+Use environment protection for the production workflow as appropriate. No long-lived Azure credential secret is required. The Azure deployment workflow requires this identity setup; adding YAML alone does not establish a successful Azure deployment. Ordinary application/container and Bicep validation jobs have passed in the public GitHub repository.
 
 ## Runtime controls and limits
 
@@ -152,7 +152,7 @@ Use environment protection for the production workflow as appropriate. No long-l
 
 All live fixtures, histories, tracking, wearables, teams, and players remain synthetic. Azure adds a concrete Microsoft AI and cloud integration path while preserving explainability and audience personalization. The three specialized roles have real shared evidence, handoffs, rejection, and failure recovery. This strengthens the technical and operational story; the judges still need a compelling working demonstration and measured value from orchestration.
 
-Local tests and Bicep compilation have been performed in the development environment. A container build/run in GitHub CI, Azure control-plane deployment, managed-identity permissions, model availability, cloud latency, and telemetry ingestion still require execution in the target accounts. For submission, also provide the public GitHub repository and a public video under two minutes. Keep a private working repository if desired, then review and publish the submission source separately.
+Local tests and Bicep compilation have been performed in the development environment. Container build/run and Bicep compilation have passed in GitHub CI. Azure control-plane deployment, managed-identity permissions, model availability, cloud latency, and telemetry ingestion still require execution in the target Azure account. For submission, also provide the public GitHub repository and a public video under two minutes. Keep a private working repository if desired, then review and publish the submission source separately.
 
 ## Updated verification path
 

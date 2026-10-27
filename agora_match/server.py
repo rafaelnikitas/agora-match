@@ -4,7 +4,7 @@ import os
 
 def main():
     import uvicorn
-    uvicorn.run("playerlens.api:create_app",factory=True,host="0.0.0.0",port=int(os.getenv("PORT","8080")),
+    uvicorn.run("agora_match.api:create_app",factory=True,host="0.0.0.0",port=int(os.getenv("PORT","8080")),
                 access_log=False,proxy_headers=False,timeout_keep_alive=5,limit_concurrency=128)
 
 

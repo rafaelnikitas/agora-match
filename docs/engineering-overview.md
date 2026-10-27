@@ -107,8 +107,8 @@ The intended LLM workflow is tool orchestration, not free-form web scraping or a
 python3.12 -m venv .venv
 source .venv/bin/activate
 python -m pip install --require-hashes -r requirements.txt
-python -m playerlens.build_static
-python -m playerlens.server
+python -m agora_match.build_static
+python -m agora_match.server
 ```
 
 Open http://localhost:8080. Run tests with:
@@ -120,13 +120,13 @@ python -m unittest discover -s tests -v
 Rebuild the static visitor demo data after changing the synthetic fixtures or insight rules:
 
 ```bash
-python -m playerlens.build_static
+python -m agora_match.build_static
 ```
 
 Build the complete click-to-open static site into `dist/` with one command:
 
 ```bash
-python -m playerlens.build_site
+python -m agora_match.build_site
 ```
 
 The generated `static/data/*.json` files and `dist/` are recreated by the build, so the hosted experience runs with no Python process, package install, account, or API key. The public static preview uses deterministic evidence-based copy. The Python server is needed for optional Microsoft Foundry narration. The public static preview intentionally does not embed a model key.
@@ -239,8 +239,8 @@ See [`docs/winning-plan.md`](winning-plan.md) for the final submission checklist
 Build and run locally:
 
 ```bash
-docker build -t playerlens .
-docker run --rm -p 8080:8080 playerlens
+docker build -t agora-match .
+docker run --rm -p 8080:8080 agora-match
 ```
 
 For Azure, use the provided [deployment runbook](azure-readiness.md). It builds the image remotely in ACR, deploys its immutable digest, and verifies real three-role model execution. No model keys are placed in the image, repository, or browser.
