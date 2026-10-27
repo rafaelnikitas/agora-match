@@ -3,7 +3,7 @@
 > **See the match behind the score.** Agora Match turns a football event feed into explainable stories for fans, analysts, and coaches.
 
 <p align="center">
-  <a href="https://playerlens-match-intelligence.russettitan64.chatgpt.site/"><strong>▶ Open the live Agora Match demo</strong></a>
+  <a href="https://agoramatch.russettitan64.chatgpt.site/"><strong>▶ Open the live Agora Match demo</strong></a>
 </p>
 
 ![Agora Match fan workspace with synthetic pitch replay and a grounded historical answer](images/agora-fan-workspace.jpg)

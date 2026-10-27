@@ -6,9 +6,9 @@ Football has more to say than the score. Agora Match turns synthetic match event
 
 ## Links
 
-- Working app: https://playerlens-match-intelligence.russettitan64.chatgpt.site/
+- Working app: https://agoramatch.russettitan64.chatgpt.site/
 - Public source: https://github.com/rafaelnikitas/agora-match
-- Narrated walkthrough: https://playerlens-match-intelligence.russettitan64.chatgpt.site/showcase.html
+- Narrated walkthrough: https://agoramatch.russettitan64.chatgpt.site/showcase.html
 - **Required video platform URL: pending upload to YouTube, Vimeo, Facebook Video, or Youku.** The self-hosted walkthrough above is a review copy; it does not replace that submission requirement.
 
 ## Problem and users
