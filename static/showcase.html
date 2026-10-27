@@ -2,29 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Agora Match — the 97-second walkthrough</title>
-  <meta name="description" content="See the working Agora Match prototype: three roles, evidence-linked match intelligence, and an optional checked Microsoft Foundry workflow.">
+  <title>Agora Match — Azure &amp; Foundry demo</title>
+  <meta name="description" content="A 114-second customer walkthrough: Fan, Analyst, Coach, real Microsoft Foundry answers, visible evidence, and Azure deployment.">
   <style>
-    :root{color-scheme:dark;font-family:system-ui,sans-serif;background:#101d25;color:#f7fbfc}
-    *{box-sizing:border-box}body{max-width:1120px;margin:auto;padding:28px 24px 64px}header{display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #40515b;padding-bottom:22px}a{color:#9cebdc;text-underline-offset:5px}nav{display:flex;gap:22px;flex-wrap:wrap}h1{font-size:clamp(30px,5vw,54px);line-height:1.12;max-width:900px;margin-top:52px}p{font-size:18px;line-height:1.6;color:#c1ced5;max-width:900px}video{display:block;width:100%;aspect-ratio:16/9;background:#081117;border:1px solid #40515b;border-radius:12px;margin:30px 0 20px}h2{font-size:24px;margin-top:38px}.links{display:flex;gap:16px;flex-wrap:wrap}.links a{padding:13px 18px;border:1px solid #5d8a82;border-radius:8px}summary{cursor:pointer;padding:16px 0;font-size:19px}details p{font-size:16px}a:focus-visible,summary:focus-visible{outline:3px solid #fff;outline-offset:5px}.label{color:#9cebdc;letter-spacing:.12em;font-size:13px;font-weight:700}
+    :root{color-scheme:dark;font-family:system-ui,sans-serif;background:#0d191f;color:#f5fafb}
+    *{box-sizing:border-box}body{max-width:1120px;margin:auto;padding:28px 24px 64px}header{display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #354e59;padding-bottom:22px}a{color:#a3efdc;text-underline-offset:5px}nav{display:flex;gap:22px;flex-wrap:wrap}h1{font-size:clamp(30px,5vw,54px);line-height:1.12;max-width:900px;margin-top:46px}p{font-size:18px;line-height:1.6;color:#bfd0d7;max-width:960px}video{display:block;width:100%;aspect-ratio:16/9;background:#071014;border:1px solid #354e59;border-radius:14px;margin:26px 0 20px}h2{font-size:24px;margin-top:36px}.links,.chapters{display:flex;gap:12px;flex-wrap:wrap}.links a,.chapters button{padding:13px 17px;border:1px solid #5d8a82;border-radius:9px;font:inherit}.chapters button{color:#d7eee7;background:#182b34;cursor:pointer;min-height:48px}.links .primary{background:#83e6cf;color:#0d191f;font-weight:700}summary{cursor:pointer;padding:16px 0;font-size:19px}details p{font-size:16px}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #fff;outline-offset:5px}.label{color:#a3efdc;letter-spacing:.1em;font-size:13px;font-weight:700}.note{font-size:15px}.chapters span{color:#a3efdc;font-variant-numeric:tabular-nums;margin-right:8px}footer{border-top:1px solid #354e59;margin-top:36px;padding-top:16px}
   </style>
 </head>
 <body>
-  <header><strong>AGORA MATCH</strong><nav aria-label="Project links"><a href="/">Open the app</a><a href="https://github.com/rafaelnikitas/agora-match">Public source</a></nav></header>
+  <header><strong>AGORA MATCH</strong><nav aria-label="Project links"><a href="https://agora-demo-d3ysdvzmwpuoi.orangewater-9594c3f1.swedencentral.azurecontainerapps.io/">Open the live AI app</a><a href="https://github.com/rafaelnikitas/agora-match">Public source</a></nav></header>
   <main>
-    <p class="label">WORKING PROTOTYPE · SYNTHETIC FOOTBALL DATA</p>
-    <h1>The story behind the score.</h1>
-    <p>A narrated, captioned walkthrough of matchday, visual analysis, player evidence, coach review, and the optional Microsoft Foundry handoff.</p>
-    <video controls preload="metadata" poster="https://agoramatch.russettitan64.chatgpt.site/media/agora-match-poster.jpg" aria-label="Agora Match narrated demonstration">
-      <source src="https://agoramatch.russettitan64.chatgpt.site/media/agora-match-demo.mp4" type="video/mp4">
-      <track kind="captions" src="https://agoramatch.russettitan64.chatgpt.site/media/agora-match-demo.vtt" srclang="en" label="English">
+    <p class="label">AZURE + MICROSOFT FOUNDRY · SYNTHETIC FOOTBALL DATA</p>
+    <h1>One match. Many perspectives.</h1>
+    <p>See what a fan, analyst, or coach can do with Agora Match. This updated 1:54 walkthrough includes real Foundry answers and their evidence, captured from the Azure application on 27 October 2026.</p>
+    <video id="demo-video" controls playsinline preload="metadata" poster="https://agoramatch.russettitan64.chatgpt.site/media/agora-match-azure-poster.jpg" aria-label="Agora Match narrated Azure and Foundry demonstration">
+      <source src="https://agoramatch.russettitan64.chatgpt.site/media/agora-match-azure-demo.mp4" type="video/mp4">
+      <track kind="captions" src="https://agoramatch.russettitan64.chatgpt.site/media/agora-match-azure-demo.vtt" srclang="en" label="English">
       Your browser cannot play this video. Use the download link below.
     </video>
-    <div class="links"><a href="/">Try Agora Match</a><a href="https://agoramatch.russettitan64.chatgpt.site/media/agora-match-demo.mp4" download>Download MP4 · 1:37</a><a href="https://github.com/rafaelnikitas/agora-match">Explore the code</a></div>
+    <div class="links"><a class="primary" href="https://agora-demo-d3ysdvzmwpuoi.orangewater-9594c3f1.swedencentral.azurecontainerapps.io/">Try the live AI app ↗</a><a href="https://agoramatch.russettitan64.chatgpt.site/media/agora-match-azure-demo.mp4" download>Download MP4 · 1:54</a><a href="https://github.com/rafaelnikitas/agora-match">Explore the code</a></div>
+    <h2>Choose a moment</h2>
+    <div class="chapters" role="group" aria-label="Jump to a video chapter">
+      <button type="button" data-time="18"><span>0:18</span> Fan questions</button>
+      <button type="button" data-time="31"><span>0:31</span> AI &amp; evidence</button>
+      <button type="button" data-time="42"><span>0:42</span> Visual analysis</button>
+      <button type="button" data-time="62"><span>1:02</span> Player view</button>
+      <button type="button" data-time="72"><span>1:12</span> Coach review</button>
+      <button type="button" data-time="98"><span>1:38</span> Azure verification</button>
+    </div>
     <h2>What you are seeing</h2>
-    <p>Authentic captures from the functioning app, edited for clarity. Teams, players, history, events, and telemetry are fictional. Narration is synthesized and captions are included. No match footage or music is used.</p>
-    <details><summary>AI execution status and limits</summary><p>The public demo uses deterministic responses. The source includes an optional Microsoft Foundry analyst, narrator, and reviewer workflow. Live model evaluation and Azure deployment remain unverified. Local regression checks are not a live LLM accuracy score. Player positions are minute-sampled; the second-by-second ball path is illustrative interpolation constrained by event locations.</p></details>
-    <details><summary>Transcript and credits</summary><p><a href="https://agoramatch.russettitan64.chatgpt.site/media/agora-match-demo.vtt">Read the caption transcript</a>. Voice generated with Piper using the en_US-ljspeech-high voice; the LJ Speech source dataset is public domain. See the repository's demo asset credits for the model card and production details.</p></details>
+    <p>Genuine captures of the functioning app, edited into a narrated walkthrough with readable close-ups and captions. The replay uses successive captured frames. All teams, players, history, events, positions, and sensor readings are fictional. Narration is synthesized; no match footage or music is used.</p>
+    <details><summary>How the AI works</summary><p>The Azure app uses managed identity to invoke GPT-OSS-120B in Microsoft Foundry. Three specialist stages share that model: match analyst, audience narrator, and evidence reviewer. Custom Python code orchestrates them, preserves canonical fact values and source IDs, and allows one controlled correction before an evidence fallback. The recorded answers show actual model execution. <a href="https://github.com/rafaelnikitas/agora-match/blob/main/docs/azure-live-verification.md">Read the live verification report</a>.</p></details>
+    <details><summary>Data and evaluation limits</summary><p>The recorded acceptance run passed 21 expected topic/evidence checks with 21 fresh AI answers; five drafts recovered through a bounded correction. These fixed development cases do not establish semantic accuracy or superiority over a single-agent approach. Human quality review remains pending. Player positions are minute-sampled; the ball path is illustrative interpolation constrained by event locations. Coach cues support review and do not diagnose fatigue or establish marking responsibility. The <a href="/">separate static fallback</a> uses deterministic answers.</p></details>
+    <details><summary>Transcript and production credits</summary><p><a href="https://agoramatch.russettitan64.chatgpt.site/media/agora-match-azure-demo.vtt">Read the caption transcript</a>. Voice generated with Piper using en_US-ljspeech-high, based on the public-domain LJ Speech dataset. <a href="https://github.com/rafaelnikitas/agora-match/blob/main/docs/demo-assets.md">Production details and model credits</a>.</p></details>
+    <footer><p class="note">Hackathon review copy. The entrant still needs to upload this MP4 to an accepted video platform and add that public URL to the submission.</p></footer>
   </main>
+  <script>const video=document.getElementById('demo-video');document.querySelectorAll('[data-time]').forEach(button=>button.addEventListener('click',()=>{video.currentTime=Number(button.dataset.time);video.play().catch(()=>{});video.focus();}));</script>
 </body>
 </html>

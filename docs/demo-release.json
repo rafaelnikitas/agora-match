@@ -1,0 +1,18 @@
+{
+  "recorded_date": "2026-10-27",
+  "duration_seconds": 114.021333,
+  "video_sha256": "3fd6192aefd3ffd3cdaf62ee0bb56fefcb42f99882f06698015032baf9dbb63e",
+  "video_bytes": 7680606,
+  "video_format": "1920x1080 H.264 5fps / AAC",
+  "runtime_source_commit": "30990917600ac7f02029596743892bd4f5d78a61",
+  "capture_method": "Edited genuine Azure app screenshots and successive replay frames",
+  "actual_ai_examples": [
+    "Fan corner question with team history and three-stage trace",
+    "Analyst fullback-versus-winger cases",
+    "Coach paired-gap review",
+    "Generated commentary"
+  ],
+  "all_football_data": "synthetic",
+  "semantic_quality_review": "pending",
+  "approved_video_platform_upload": "pending"
+}

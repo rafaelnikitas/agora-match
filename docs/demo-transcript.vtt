@@ -1,70 +1,82 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:03.820
-Football has more to say than the score. This is Agora Match.
+00:00:00.000 --> 00:00:05.190
+Agora means a public gathering place. Agora Match brings fans, analysts, and
 
-00:00:04.370 --> 00:00:10.144
-One synthetic match becomes three distinct experiences. Fans follow the story. Analysts
+00:00:05.190 --> 00:00:08.650
+coaches together around one game, with different perspectives.
 
-00:00:10.144 --> 00:00:13.031
-inspect evidence. Coaches prepare focused reviews.
+00:00:09.000 --> 00:00:13.835
+Choose either fictional fixture. Follow the ball, change replay speed, or jump
 
-00:00:13.581 --> 00:00:19.432
-Play the match, follow the ball, and jump straight to key moments. The replay uses
+00:00:13.835 --> 00:00:15.850
+straight to a key moment.
 
-00:00:19.432 --> 00:00:21.383
-fictional events and illustrative tracking.
+00:00:18.000 --> 00:00:23.841
+As a fan, ask why a corner matters. Agora combines the current event with both
 
-00:00:21.933 --> 00:00:26.958
-At a corner, Agora connects the current moment with both teams' recent set piece
+00:00:23.841 --> 00:00:28.124
+teams' recent history, then explains the relevant counts in plain language.
 
-00:00:26.958 --> 00:00:30.188
-history. Every claim keeps its sample size and source.
+00:00:31.000 --> 00:00:36.141
+Open the evidence and the actual AI trace. A match analyst selects facts, a
 
-00:00:30.738 --> 00:00:35.504
-Ask the match in plain language. Open the supporting facts, then follow an event link
+00:00:36.141 --> 00:00:40.548
+narrator explains them, and a reviewer checks the draft. Microsoft Foundry powers
 
-00:00:35.504 --> 00:00:36.775
-back to the pitch.
+00:00:40.548 --> 00:00:41.650
+all three stages.
 
-00:00:37.325 --> 00:00:42.828
-Analysts can find tagged winger versus fullback encounters, and inspect each outcome
+00:00:42.000 --> 00:00:47.105
+For an analyst, a question becomes a visual investigation. Find fullback versus
 
-00:00:42.828 --> 00:00:44.663
-alongside prior player positions.
+00:00:47.105 --> 00:00:52.209
+winger encounters, select a case, and inspect its outcome alongside the sampled
 
-00:00:45.213 --> 00:00:50.160
-Rewind to twenty minutes. Later evidence disappears. The score becomes nil nil, and
+00:00:52.209 --> 00:00:52.635
+positions.
 
-00:00:50.160 --> 00:00:52.063
-eight tagged encounters become one.
+00:00:54.000 --> 00:00:58.512
+Rewind to twenty minutes. The available cases shrink to one, because later
 
-00:00:52.613 --> 00:00:57.181
-Follow any player for position specific metrics, a movement heatmap, historical
+00:00:58.512 --> 00:01:00.769
+evidence is excluded from that moment.
 
-00:00:57.181 --> 00:00:59.672
-context, and a transparent demo rating.
+00:01:02.000 --> 00:01:06.552
+Follow one player through a movement heatmap, position-specific statistics, a
 
-00:01:00.222 --> 00:01:05.908
-Coaches get qualified review cues. Lower sampled running output and wider spacing
+00:01:06.552 --> 00:01:10.649
+transparent demo rating, and comparisons with recent synthetic history.
 
-00:01:05.908 --> 00:01:10.172
-trigger questions, not fatigue diagnoses or assumed marking errors.
+00:01:12.000 --> 00:01:17.261
+The coach gets a priority board and an assistant. Inspect a widening gap or
 
-00:01:10.722 --> 00:01:16.313
-Package a finding as a timed broadcast card, with machine readable evidence and an
+00:01:17.261 --> 00:01:21.771
+changing running output, check the evidence, and prepare a discussion. These are
 
-00:01:16.313 --> 00:01:16.713
-expiry.
+00:01:21.771 --> 00:01:23.650
+review cues, not fatigue diagnoses.
 
-00:01:17.263 --> 00:01:22.407
-An optional Microsoft Foundry workflow separates analysis, audience narration, and
+00:01:24.000 --> 00:01:28.188
+Generate match commentary from the available evidence. The Speak control can read
 
-00:01:22.407 --> 00:01:28.580
-review. Code preserves fact values. This public demo uses deterministic answers. Live
+00:01:28.188 --> 00:01:29.933
+it aloud through the browser.
 
-00:01:28.580 --> 00:01:30.638
-model evaluation remains pending.
+00:01:31.000 --> 00:01:36.000
+For a studio workflow, preview a timed insight card and export its evidence and
 
-00:01:31.188 --> 00:01:36.308
-Explore two fictional matches. Ask, inspect, and share the story behind the score.
+00:01:36.000 --> 00:01:37.072
+timing as JSON.
+
+00:01:38.000 --> 00:01:42.889
+This app runs on Azure Container Apps, with keyless access to Foundry. Twenty-one
+
+00:01:42.889 --> 00:01:46.650
+live acceptance checks passed; explanation quality still needs human review.
+
+00:01:47.000 --> 00:01:52.320
+Two synthetic games. Three perspectives. Open Agora Match, choose your role, and
+
+00:01:52.320 --> 00:01:53.650
+ask the match.

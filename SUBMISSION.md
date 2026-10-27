@@ -50,17 +50,17 @@ The initial user is a digital match-content producer who needs concise, sourced 
 
 ## Remaining entry steps
 
-1. Upload the finished 1:37 MP4 to an accepted video platform and paste its public URL into the entry.
+1. Upload the updated 1:54 MP4 to an accepted video platform and paste its public URL into the entry.
 2. Use the Azure app and its retained live verification evidence when describing demonstrated Microsoft AI execution; review the documented limitations.
 3. Paste the pitch, app URL, public source URL, technology description, and video URL into the hackathon project page.
 4. The entrant must verify eligibility/team details, answer ownership and rule attestations, and perform the final portal submission.
 
-The existing recording predates the Azure deployment. Refresh its Foundry segment with a real live answer and trace before final submission.
+The updated recording was captured from the Azure app on 27 October 2026. It includes fresh Fan, Analyst, and Coach Foundry answers, visible source facts, and an actual three-stage execution trace. It remains a self-hosted review copy until uploaded to an accepted video platform.
 
 ## Video upload copy
 
 **Title:** Agora Match — the story behind the score | Inside the Game
 
-**Description:** A 97-second walkthrough of Agora Match, a synthetic-data football intelligence prototype for fans, analysts, coaches, and broadcast workflows. The video shows the functioning interface, historical context, evidence-linked questions, visual matchups, time-bounded analysis, player metrics, and qualified coach review. It also explains the optional Microsoft Foundry three-role workflow. The recording shows the earlier static demo; the linked Azure application now runs the real Foundry workflow. Runtime acceptance evidence is linked above. App and source links are listed above. All football data and teams are fictional. Narration is synthesized; no copyrighted music or match footage is used.
+**Description:** A 1-minute-54-second customer walkthrough of Agora Match, a football intelligence prototype for fans, analysts, coaches, and broadcast workflows. Captured from the Azure application on 27 October 2026, the video shows real Microsoft Foundry answers with historical context, supporting facts and execution stages; visual fullback-versus-winger cases; replay-aware evidence; player heatmaps and ratings; qualified coach review; commentary; and timed broadcast export. Azure Container Apps hosts the app, and managed identity provides keyless Foundry access. Three specialist stages share GPT-OSS-120B and use custom Python orchestration. The fixed 21-case live acceptance run verifies expected evidence checks, with human explanation-quality review still pending. All football data and teams are fictional. Narration is synthesized; no match footage or music is used. App and source links are listed above.
 
 Video production and voice credits: [demo assets](docs/demo-assets.md).
