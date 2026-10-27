@@ -1,0 +1,507 @@
+{
+  "questions": 21,
+  "evidence_routing_rate": 1.0,
+  "real_model_rate": 1.0,
+  "fallback_rate": 0.0,
+  "p50_latency_ms": 9579,
+  "p95_latency_ms": 12973,
+  "recovered_answers": 5,
+  "fresh_model_answers": 21,
+  "reported_tokens": 60456,
+  "note": "Fixed development acceptance cases; not an independent quality benchmark. Evidence routing checks known facts; it is not a semantic groundedness or coaching-quality score.",
+  "results": [
+    {
+      "persona": "fan",
+      "expected_topic": "tactics",
+      "actual_topic": "tactics",
+      "evidence_ok": true,
+      "model_used": true,
+      "cache_hit": false,
+      "reason": "azure_foundry",
+      "latency_ms": 12973,
+      "stage_path": [
+        "match_analyst",
+        "audience_narrator",
+        "evidence_reviewer"
+      ],
+      "stage_statuses": [
+        "completed",
+        "completed",
+        "completed"
+      ],
+      "revision_count": 0,
+      "reported_tokens": 2722
+    },
+    {
+      "persona": "analyst",
+      "expected_topic": "tactics",
+      "actual_topic": "tactics",
+      "evidence_ok": true,
+      "model_used": true,
+      "cache_hit": false,
+      "reason": "azure_foundry",
+      "latency_ms": 8491,
+      "stage_path": [
+        "match_analyst",
+        "audience_narrator",
+        "evidence_reviewer"
+      ],
+      "stage_statuses": [
+        "completed",
+        "completed",
+        "completed"
+      ],
+      "revision_count": 0,
+      "reported_tokens": 2917
+    },
+    {
+      "persona": "coach",
+      "expected_topic": "tactics",
+      "actual_topic": "tactics",
+      "evidence_ok": true,
+      "model_used": true,
+      "cache_hit": false,
+      "reason": "azure_foundry",
+      "latency_ms": 8614,
+      "stage_path": [
+        "match_analyst",
+        "audience_narrator",
+        "evidence_reviewer"
+      ],
+      "stage_statuses": [
+        "completed",
+        "completed",
+        "completed"
+      ],
+      "revision_count": 0,
+      "reported_tokens": 2933
+    },
+    {
+      "persona": "fan",
+      "expected_topic": "history",
+      "actual_topic": "history",
+      "evidence_ok": true,
+      "model_used": true,
+      "cache_hit": false,
+      "reason": "azure_foundry",
+      "latency_ms": 11177,
+      "stage_path": [
+        "match_analyst",
+        "audience_narrator",
+        "evidence_reviewer",
+        "audience_narrator",
+        "evidence_reviewer"
+      ],
+      "stage_statuses": [
+        "completed",
+        "completed",
+        "rejected",
+        "completed",
+        "completed"
+      ],
+      "revision_count": 1,
+      "reported_tokens": 3758
+    },
+    {
+      "persona": "analyst",
+      "expected_topic": "history",
+      "actual_topic": "history",
+      "evidence_ok": true,
+      "model_used": true,
+      "cache_hit": false,
+      "reason": "azure_foundry",
+      "latency_ms": 8198,
+      "stage_path": [
+        "match_analyst",
+        "audience_narrator",
+        "evidence_reviewer"
+      ],
+      "stage_statuses": [
+        "completed",
+        "completed",
+        "completed"
+      ],
+      "revision_count": 0,
+      "reported_tokens": 2184
+    },
+    {
+      "persona": "coach",
+      "expected_topic": "history",
+      "actual_topic": "history",
+      "evidence_ok": true,
+      "model_used": true,
+      "cache_hit": false,
+      "reason": "azure_foundry",
+      "latency_ms": 7748,
+      "stage_path": [
+        "match_analyst",
+        "audience_narrator",
+        "evidence_reviewer"
+      ],
+      "stage_statuses": [
+        "completed",
+        "completed",
+        "completed"
+      ],
+      "revision_count": 0,
+      "reported_tokens": 2169
+    },
+    {
+      "persona": "fan",
+      "expected_topic": "fullback_winger",
+      "actual_topic": "fullback_winger",
+      "evidence_ok": true,
+      "model_used": true,
+      "cache_hit": false,
+      "reason": "azure_foundry",
+      "latency_ms": 9311,
+      "stage_path": [
+        "match_analyst",
+        "audience_narrator",
+        "evidence_reviewer"
+      ],
+      "stage_statuses": [
+        "completed",
+        "completed",
+        "completed"
+      ],
+      "revision_count": 0,
+      "reported_tokens": 2489
+    },
+    {
+      "persona": "analyst",
+      "expected_topic": "fullback_winger",
+      "actual_topic": "fullback_winger",
+      "evidence_ok": true,
+      "model_used": true,
+      "cache_hit": false,
+      "reason": "azure_foundry",
+      "latency_ms": 9579,
+      "stage_path": [
+        "match_analyst",
+        "audience_narrator",
+        "evidence_reviewer"
+      ],
+      "stage_statuses": [
+        "completed",
+        "completed",
+        "completed"
+      ],
+      "revision_count": 0,
+      "reported_tokens": 2582
+    },
+    {
+      "persona": "coach",
+      "expected_topic": "fullback_winger",
+      "actual_topic": "fullback_winger",
+      "evidence_ok": true,
+      "model_used": true,
+      "cache_hit": false,
+      "reason": "azure_foundry",
+      "latency_ms": 11771,
+      "stage_path": [
+        "match_analyst",
+        "audience_narrator",
+        "evidence_reviewer",
+        "audience_narrator",
+        "evidence_reviewer"
+      ],
+      "stage_statuses": [
+        "completed",
+        "completed",
+        "rejected",
+        "completed",
+        "completed"
+      ],
+      "revision_count": 1,
+      "reported_tokens": 4390
+    },
+    {
+      "persona": "fan",
+      "expected_topic": "spacing",
+      "actual_topic": "spacing",
+      "evidence_ok": true,
+      "model_used": true,
+      "cache_hit": false,
+      "reason": "azure_foundry",
+      "latency_ms": 8670,
+      "stage_path": [
+        "match_analyst",
+        "audience_narrator",
+        "evidence_reviewer"
+      ],
+      "stage_statuses": [
+        "completed",
+        "completed",
+        "completed"
+      ],
+      "revision_count": 0,
+      "reported_tokens": 2168
+    },
+    {
+      "persona": "analyst",
+      "expected_topic": "spacing",
+      "actual_topic": "spacing",
+      "evidence_ok": true,
+      "model_used": true,
+      "cache_hit": false,
+      "reason": "azure_foundry",
+      "latency_ms": 11232,
+      "stage_path": [
+        "match_analyst",
+        "audience_narrator",
+        "evidence_reviewer"
+      ],
+      "stage_statuses": [
+        "completed",
+        "completed",
+        "completed"
+      ],
+      "revision_count": 0,
+      "reported_tokens": 2232
+    },
+    {
+      "persona": "coach",
+      "expected_topic": "spacing",
+      "actual_topic": "spacing",
+      "evidence_ok": true,
+      "model_used": true,
+      "cache_hit": false,
+      "reason": "azure_foundry",
+      "latency_ms": 6740,
+      "stage_path": [
+        "match_analyst",
+        "audience_narrator",
+        "evidence_reviewer"
+      ],
+      "stage_statuses": [
+        "completed",
+        "completed",
+        "completed"
+      ],
+      "revision_count": 0,
+      "reported_tokens": 2208
+    },
+    {
+      "persona": "fan",
+      "expected_topic": "player_history",
+      "actual_topic": "player_history",
+      "evidence_ok": true,
+      "model_used": true,
+      "cache_hit": false,
+      "reason": "azure_foundry",
+      "latency_ms": 11461,
+      "stage_path": [
+        "match_analyst",
+        "audience_narrator",
+        "audience_narrator",
+        "evidence_reviewer"
+      ],
+      "stage_statuses": [
+        "completed",
+        "rejected",
+        "completed",
+        "completed"
+      ],
+      "revision_count": 1,
+      "reported_tokens": 3247
+    },
+    {
+      "persona": "analyst",
+      "expected_topic": "player_history",
+      "actual_topic": "player_history",
+      "evidence_ok": true,
+      "model_used": true,
+      "cache_hit": false,
+      "reason": "azure_foundry",
+      "latency_ms": 8905,
+      "stage_path": [
+        "match_analyst",
+        "audience_narrator",
+        "audience_narrator",
+        "evidence_reviewer"
+      ],
+      "stage_statuses": [
+        "completed",
+        "rejected",
+        "completed",
+        "completed"
+      ],
+      "revision_count": 1,
+      "reported_tokens": 3224
+    },
+    {
+      "persona": "coach",
+      "expected_topic": "player_history",
+      "actual_topic": "player_history",
+      "evidence_ok": true,
+      "model_used": true,
+      "cache_hit": false,
+      "reason": "azure_foundry",
+      "latency_ms": 8261,
+      "stage_path": [
+        "match_analyst",
+        "audience_narrator",
+        "evidence_reviewer"
+      ],
+      "stage_statuses": [
+        "completed",
+        "completed",
+        "completed"
+      ],
+      "revision_count": 0,
+      "reported_tokens": 2374
+    },
+    {
+      "persona": "fan",
+      "expected_topic": "team_history",
+      "actual_topic": "team_history",
+      "evidence_ok": true,
+      "model_used": true,
+      "cache_hit": false,
+      "reason": "azure_foundry",
+      "latency_ms": 11570,
+      "stage_path": [
+        "match_analyst",
+        "audience_narrator",
+        "evidence_reviewer"
+      ],
+      "stage_statuses": [
+        "completed",
+        "completed",
+        "completed"
+      ],
+      "revision_count": 0,
+      "reported_tokens": 3485
+    },
+    {
+      "persona": "analyst",
+      "expected_topic": "team_history",
+      "actual_topic": "team_history",
+      "evidence_ok": true,
+      "model_used": true,
+      "cache_hit": false,
+      "reason": "azure_foundry",
+      "latency_ms": 10234,
+      "stage_path": [
+        "match_analyst",
+        "audience_narrator",
+        "evidence_reviewer"
+      ],
+      "stage_statuses": [
+        "completed",
+        "completed",
+        "completed"
+      ],
+      "revision_count": 0,
+      "reported_tokens": 3542
+    },
+    {
+      "persona": "coach",
+      "expected_topic": "team_history",
+      "actual_topic": "team_history",
+      "evidence_ok": true,
+      "model_used": true,
+      "cache_hit": false,
+      "reason": "azure_foundry",
+      "latency_ms": 11105,
+      "stage_path": [
+        "match_analyst",
+        "audience_narrator",
+        "evidence_reviewer"
+      ],
+      "stage_statuses": [
+        "completed",
+        "completed",
+        "completed"
+      ],
+      "revision_count": 0,
+      "reported_tokens": 3500
+    },
+    {
+      "persona": "fan",
+      "expected_topic": "history",
+      "actual_topic": "history",
+      "evidence_ok": true,
+      "model_used": true,
+      "cache_hit": false,
+      "reason": "azure_foundry",
+      "latency_ms": 14499,
+      "stage_path": [
+        "match_analyst",
+        "audience_narrator",
+        "evidence_reviewer"
+      ],
+      "stage_statuses": [
+        "completed",
+        "completed",
+        "completed"
+      ],
+      "revision_count": 0,
+      "reported_tokens": 2193
+    },
+    {
+      "persona": "analyst",
+      "expected_topic": "history",
+      "actual_topic": "history",
+      "evidence_ok": true,
+      "model_used": true,
+      "cache_hit": false,
+      "reason": "azure_foundry",
+      "latency_ms": 9053,
+      "stage_path": [
+        "match_analyst",
+        "audience_narrator",
+        "evidence_reviewer"
+      ],
+      "stage_statuses": [
+        "completed",
+        "completed",
+        "completed"
+      ],
+      "revision_count": 0,
+      "reported_tokens": 2233
+    },
+    {
+      "persona": "coach",
+      "expected_topic": "history",
+      "actual_topic": "history",
+      "evidence_ok": true,
+      "model_used": true,
+      "cache_hit": false,
+      "reason": "azure_foundry",
+      "latency_ms": 9678,
+      "stage_path": [
+        "match_analyst",
+        "audience_narrator",
+        "evidence_reviewer",
+        "audience_narrator",
+        "evidence_reviewer"
+      ],
+      "stage_statuses": [
+        "completed",
+        "completed",
+        "rejected",
+        "completed",
+        "completed"
+      ],
+      "revision_count": 1,
+      "reported_tokens": 3906
+    }
+  ],
+  "run_info": {
+    "verified_at": "2026-10-27T16:06:27.098126+02:00",
+    "application_url": "https://agora-demo-d3ysdvzmwpuoi.orangewater-9594c3f1.swedencentral.azurecontainerapps.io/",
+    "deployed_source_commit": "30990917600ac7f02029596743892bd4f5d78a61",
+    "deployed_image_digest": "sha256:e0bb67da3c8fca730bc18e06dcddd4e0dd311fcbf54407a768d97f5affeae1f2",
+    "case_sha256": "b420f79fdef005955a03f6a18ca424a633f1de8cd8be5a7c5a0f8e7f6d98740e",
+    "pause_seconds": 10,
+    "request_personas": [
+      "fan",
+      "analyst",
+      "coach"
+    ],
+    "historical_data": "synthetic",
+    "human_quality_review": "pending"
+  }
+}

@@ -47,6 +47,8 @@ An optional **Microsoft Foundry** workflow explains a bounded evidence bundle th
 
 [Verify real Foundry calls](docs/foundry-verification.md) using an existing deployment or the manual GitHub verification workflow.
 
+[Live Azure verification results and remaining tasks](docs/azure-live-verification.md). The latest fixed suite completed 21 fresh AI answers, including five bounded corrections; qualitative review remains pending.
+
 ## What makes the evidence inspectable
 
 - **One match clock:** chat, stats, recaps, heatmaps, ratings, and exports use the selected replay cutoff. Future events disappear when you rewind.

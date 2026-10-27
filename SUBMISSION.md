@@ -34,6 +34,8 @@ The optional Python service integrates Microsoft Foundry model deployments throu
 
 **The Azure app is deployed and actual Foundry model calls have been verified with managed identity.** The separate public static demo uses deterministic responses. Live acceptance evaluation measures routing, execution/fallback rate and latency; it does not establish semantic accuracy. A single-versus-three-role quality comparison and independent human review remain separate work.
 
+[Live Azure verification results and remaining tasks](docs/azure-live-verification.md). The latest fixed suite completed 21 fresh AI answers, including five bounded corrections; qualitative review remains pending.
+
 ## Data statement
 
 All teams, players, matches, histories, events, positions, ratings, and telemetry are invented. The source includes deterministic generators for two fixtures, seven-match team histories, individual appearance records, tagged events, minute-sampled player positions, event-constrained illustrative ball positions, and wearable samples. No Premier League match data or footage is redistributed. See [dataset requirements](docs/dataset-requirements.md).
@@ -53,10 +55,12 @@ The initial user is a digital match-content producer who needs concise, sourced 
 3. Paste the pitch, app URL, public source URL, technology description, and video URL into the hackathon project page.
 4. The entrant must verify eligibility/team details, answer ownership and rule attestations, and perform the final portal submission.
 
+The existing recording predates the Azure deployment. Refresh its Foundry segment with a real live answer and trace before final submission.
+
 ## Video upload copy
 
 **Title:** Agora Match — the story behind the score | Inside the Game
 
-**Description:** A 97-second walkthrough of Agora Match, a synthetic-data football intelligence prototype for fans, analysts, coaches, and broadcast workflows. The video shows the functioning interface, historical context, evidence-linked questions, visual matchups, time-bounded analysis, player metrics, and qualified coach review. It also explains the optional Microsoft Foundry three-role workflow. The public demo uses deterministic responses; live model evaluation remains pending. App and source links are listed above. All football data and teams are fictional. Narration is synthesized; no copyrighted music or match footage is used.
+**Description:** A 97-second walkthrough of Agora Match, a synthetic-data football intelligence prototype for fans, analysts, coaches, and broadcast workflows. The video shows the functioning interface, historical context, evidence-linked questions, visual matchups, time-bounded analysis, player metrics, and qualified coach review. It also explains the optional Microsoft Foundry three-role workflow. The recording shows the earlier static demo; the linked Azure application now runs the real Foundry workflow. Runtime acceptance evidence is linked above. App and source links are listed above. All football data and teams are fictional. Narration is synthesized; no copyrighted music or match footage is used.
 
 Video production and voice credits: [demo assets](docs/demo-assets.md).

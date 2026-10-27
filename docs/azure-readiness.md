@@ -170,7 +170,7 @@ Use environment protection for the production workflow as appropriate. No long-l
 
 All live fixtures, histories, tracking, wearables, teams, and players remain synthetic. Azure adds a concrete Microsoft AI and cloud integration path while preserving explainability and audience personalization. The three specialized roles have real shared evidence, handoffs, rejection, and failure recovery. This strengthens the technical and operational story; the judges still need a compelling working demonstration and measured value from orchestration.
 
-Local tests and Bicep compilation have been performed in the development environment. Container build/run and Bicep compilation have passed in GitHub CI. Azure control-plane deployment, managed-identity permissions, model availability, cloud latency, and telemetry ingestion still require execution in the target Azure account. For submission, also provide the public GitHub repository and a public video under two minutes. Keep a private working repository if desired, then review and publish the submission source separately.
+Local tests and Bicep compilation have been performed in the development environment. Container build/run and Bicep compilation have passed in GitHub CI. Deployment-specific execution evidence is retained in [live verification and remaining tasks](azure-live-verification.md). Recheck availability and permissions when deploying to another account. For submission, also provide the public GitHub repository and a public video under two minutes. Keep a private working repository if desired, then review and publish the submission source separately.
 
 ## Updated verification path
 

@@ -22,17 +22,24 @@ def evaluate(url, cases, pause=0):
             try:
                 with urllib.request.urlopen(request,timeout=90) as response:
                     answer=json.load(response)
-            except urllib.error.URLError:
+            except (TimeoutError,urllib.error.URLError):
                 answer={'reason':'http_or_network_failure'}
             values=[f.get('value') for f in answer.get('facts',[])]
             evidence_ok=answer.get('topic')==case['topic'] and bool(values) and all(v in values for v in case.get('expected_values',[]))
-            rows.append({'persona':role,'expected_topic':case['topic'],'actual_topic':answer.get('topic'),'evidence_ok':evidence_ok,'model_used':answer.get('model_used',False),'cache_hit':answer.get('cache_hit',False),'reason':answer.get('reason'),'latency_ms':round((time.monotonic()-start)*1000)})
+            rows.append({'persona':role,'expected_topic':case['topic'],'actual_topic':answer.get('topic'),'evidence_ok':evidence_ok,'model_used':answer.get('model_used',False),'cache_hit':answer.get('cache_hit',False),'reason':answer.get('reason'),'latency_ms':round((time.monotonic()-start)*1000),
+                'stage_path':[s['stage'] for s in answer.get('agent_trace',[])],
+                'stage_statuses':[s['status'] for s in answer.get('agent_trace',[])],
+                'revision_count':sum(s.get('status')=='rejected' for s in answer.get('agent_trace',[])),
+                'reported_tokens':sum(s.get('total_tokens',0) for s in answer.get('agent_trace',[]))})
             if pause: time.sleep(pause)
     times=sorted(row['latency_ms'] for row in rows)
     return {'questions':len(rows),'evidence_routing_rate':sum(r['evidence_ok'] for r in rows)/len(rows),
             'real_model_rate':sum(r['model_used'] for r in rows)/len(rows),'fallback_rate':sum(not r['model_used'] for r in rows)/len(rows),
             'p50_latency_ms':statistics.median(times),'p95_latency_ms':times[max(0,round(.95*len(times))-1)],
-            'note':'Evidence routing checks known facts; it is not a semantic groundedness or coaching-quality score.','results':rows}
+            'recovered_answers':sum(r['model_used'] and r['revision_count']>0 for r in rows),
+            'fresh_model_answers':sum(r['model_used'] and not r['cache_hit'] for r in rows),
+            'reported_tokens':sum(r['reported_tokens'] for r in rows),
+            'note':'Fixed development acceptance cases; not an independent quality benchmark. Evidence routing checks known facts; it is not a semantic groundedness or coaching-quality score.','results':rows}
 
 
 if __name__=='__main__':

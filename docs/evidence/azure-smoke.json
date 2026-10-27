@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "model_used": true,
+  "stages": [
+    "match_analyst",
+    "audience_narrator",
+    "evidence_reviewer"
+  ],
+  "evidence_count": 2,
+  "latency_ms": 10220,
+  "note": "Fresh CLI gate captured on 27 October 2026; unique acceptance reference prevents a cache hit."
+}

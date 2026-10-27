@@ -23,9 +23,24 @@ jobs:
           client-id: ${{ vars.AZURE_CLIENT_ID }}
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
-      - name: Provision, build immutable image, deploy, verify real AI
+      - name: Install the pinned registry publisher
+        run: |
+          curl --fail --silent --show-error --location https://github.com/google/go-containerregistry/releases/download/v0.22.1/go-containerregistry_Linux_x86_64.tar.gz --output "$RUNNER_TEMP/crane.tar.gz"
+          printf '%s  %s\n' 0ab7a1d6932a213aed964ce97666c3077fe691c8606413674a8b3e0b9ec4cda0 "$RUNNER_TEMP/crane.tar.gz" | sha256sum --check
+          tar -xzf "$RUNNER_TEMP/crane.tar.gz" -C "$RUNNER_TEMP" crane
+          echo "$RUNNER_TEMP" >> "$GITHUB_PATH"
+      - name: Build and exercise the image before provisioning
+        run: |
+          docker build --label "org.opencontainers.image.revision=$GITHUB_SHA" --tag agora-match:release .
+          docker run -d --name agora-release -p 8080:8080 agora-match:release
+          python scripts/smoke_azure.py --url http://127.0.0.1:8080
+          docker stop agora-release
+          docker save --output "$RUNNER_TEMP/agora-match-image.tar" agora-match:release
+      - name: Provision, push immutable image, deploy, verify real AI
         env:
           AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
           AZURE_RESOURCE_GROUP: ${{ vars.AZURE_RESOURCE_GROUP }}
-          AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
+          AZURE_LOCATION: ${{ vars.AZURE_LOCATION || 'swedencentral' }}
+          AGORA_PARAMETERS_FILE: ${{ vars.AGORA_PARAMETERS_FILE || 'infra/parameters.trial.json' }}
+          AGORA_IMAGE_ARCHIVE: ${{ runner.temp }}/agora-match-image.tar
         run: bash scripts/deploy-azure.sh
