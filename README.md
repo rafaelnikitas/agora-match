@@ -14,7 +14,7 @@ In ancient Greece, the agora was a public gathering place where people exchanged
 
 [See the welcome screen](docs/images/agora-welcome.jpg). The app includes a keyboard-accessible “Why Agora? / Αγορά” explanation and a “Change perspective” control throughout the experience.
 
-**[▶ Try the Azure app](https://agora-demo-d3ysdvzmwpuoi.orangewater-9594c3f1.swedencentral.azurecontainerapps.io/)** · [Static fallback demo](https://agoramatch.russettitan64.chatgpt.site/) · **[Watch the 1:54 Azure + Foundry demo](https://agoramatch.russettitan64.chatgpt.site/showcase.html)** · [Submission materials](SUBMISSION.md)
+**[▶ Try the Azure app](https://agora-demo-d3ysdvzmwpuoi.orangewater-9594c3f1.swedencentral.azurecontainerapps.io/)** · [Static fallback demo](https://agoramatch.russettitan64.chatgpt.site/) · **[Watch the Azure + Foundry demo on YouTube](https://youtu.be/nxC-Q8esbOQ)** · [Alternate player and MP4](https://agoramatch.russettitan64.chatgpt.site/showcase) · [Submission materials](SUBMISSION.md)
 
 ![Agora Match: synthetic pitch replay beside historical corner context](docs/images/agora-fan-workspace.jpg)
 

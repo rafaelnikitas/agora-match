@@ -14,5 +14,8 @@
   ],
   "all_football_data": "synthetic",
   "semantic_quality_review": "pending",
-  "approved_video_platform_upload": "pending"
+  "approved_video_platform_upload": "publication_reported_by_entrant",
+  "video_platform": "YouTube",
+  "video_url": "https://youtu.be/nxC-Q8esbOQ",
+  "public_playback_verification": "pending_final_signed_out_check"
 }

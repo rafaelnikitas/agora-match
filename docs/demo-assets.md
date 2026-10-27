@@ -2,7 +2,8 @@
 
 The current walkthrough is **114.021 seconds (1:54)**, **1920×1080**, 5 fps, H.264 video with AAC narration. It was captured from the public Azure application on **27 October 2026**. English subtitles are burned into the video; a separate WebVTT caption track is provided.
 
-- [Watch the updated demo](https://agoramatch.russettitan64.chatgpt.site/showcase.html)
+- [YouTube demonstration](https://youtu.be/nxC-Q8esbOQ)
+- [Alternate player](https://agoramatch.russettitan64.chatgpt.site/showcase)
 - [Download the MP4](https://agoramatch.russettitan64.chatgpt.site/media/agora-match-azure-demo.mp4)
 - [Caption transcript](demo-transcript.vtt)
 - [Storyboard and narration](demo-script.md)
@@ -29,4 +30,4 @@ Narration, script, and editorial graphics were created for Agora Match. Voice sy
 - Runtime: 114.021333 seconds
 - Chapters and narration: [demo-storyboard.json](demo-storyboard.json)
 
-Large media files are hosted on the public demo site, rather than committed to the GitHub source repository. The viewer references those hosted assets. Upload the MP4 to an accepted video platform for the final hackathon entry; the self-hosted player is a review copy.
+Large media files are hosted on the public demo site, rather than committed to the GitHub source repository. The viewer references those hosted assets. The entrant reports completing YouTube publication. Use the YouTube URL in the submission, and perform a final signed-out playback check. The self-hosted player remains an alternate review copy.

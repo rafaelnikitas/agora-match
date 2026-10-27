@@ -71,4 +71,4 @@ Two synthetic games. Three perspectives. Open Agora Match, choose your role, and
 
 ## Submission handoff
 
-Upload the finished MP4 to YouTube, Vimeo, Facebook Video, or Youku and add the public URL to the entry. The self-hosted player is a review copy. Do not claim semantic accuracy, measured multi-agent superiority, Foundry Agent Service, or Microsoft Agent Framework from this demo.
+The YouTube URL is recorded in [SUBMISSION.md](../SUBMISSION.md); the entrant reports publication is complete. Check signed-out playback and add that URL to the entry. If replacing the recording, use an accepted video platform. The self-hosted player remains an alternate review copy. Do not claim semantic accuracy, measured multi-agent superiority, Foundry Agent Service, or Microsoft Agent Framework from this demo.
