@@ -30,6 +30,7 @@
       <button type="button" data-time="72"><span>1:12</span> Coach review</button>
       <button type="button" data-time="98"><span>1:38</span> Azure verification</button>
     </div>
+    <p id="chapter-status" class="note" role="status" aria-live="polite"></p>
     <h2>What you are seeing</h2>
     <p>Genuine captures of the functioning app, edited into a narrated walkthrough with readable close-ups and captions. The replay uses successive captured frames. All teams, players, history, events, positions, and sensor readings are fictional. Narration is synthesized; no match footage or music is used.</p>
     <details><summary>How the AI works</summary><p>The Azure app uses managed identity to invoke GPT-OSS-120B in Microsoft Foundry. Three specialist stages share that model: match analyst, audience narrator, and evidence reviewer. Custom Python code orchestrates them, preserves canonical fact values and source IDs, and allows one controlled correction before an evidence fallback. The recorded answers show actual model execution. <a href="https://github.com/rafaelnikitas/agora-match/blob/main/docs/azure-live-verification.md">Read the live verification report</a>.</p></details>
@@ -37,6 +38,46 @@
     <details><summary>Transcript and production credits</summary><p><a href="https://agoramatch.russettitan64.chatgpt.site/media/agora-match-azure-demo.vtt">Read the caption transcript</a>. Voice generated with Piper using en_US-ljspeech-high, based on the public-domain LJ Speech dataset. <a href="https://github.com/rafaelnikitas/agora-match/blob/main/docs/demo-assets.md">Production details and model credits</a>.</p></details>
     <footer><p class="note">Hackathon review copy. The entrant still needs to upload this MP4 to an accepted video platform and add that public URL to the submission.</p></footer>
   </main>
-  <script>const video=document.getElementById('demo-video');document.querySelectorAll('[data-time]').forEach(button=>button.addEventListener('click',()=>{video.currentTime=Number(button.dataset.time);video.play().catch(()=>{});video.focus();}));</script>
+  <script>
+    const video=document.getElementById('demo-video');
+    const chapterButtons=[...document.querySelectorAll('[data-time]')];
+    const status=document.getElementById('chapter-status');
+    let seekableSource;
+    async function prepareChapters(){
+      if(!seekableSource){
+        seekableSource=(async()=>{
+          const response=await fetch(video.querySelector('source').src);
+          if(!response.ok) throw new Error('Video unavailable');
+          const blob=await response.blob();
+          const url=URL.createObjectURL(blob);
+          video.pause();
+          const ready=new Promise((resolve,reject)=>{
+            video.addEventListener('loadedmetadata',resolve,{once:true});
+            video.addEventListener('error',reject,{once:true});
+          });
+          video.src=url;
+          video.load();
+          await ready;
+          window.addEventListener('pagehide',()=>URL.revokeObjectURL(url),{once:true});
+        })().catch(error=>{seekableSource=undefined;throw error;});
+      }
+      return seekableSource;
+    }
+    chapterButtons.forEach(button=>button.addEventListener('click',async()=>{
+      chapterButtons.forEach(item=>item.disabled=true);
+      status.textContent='Preparing the selected chapter…';
+      try{
+        await prepareChapters();
+        video.currentTime=Number(button.dataset.time);
+        await video.play();
+        video.focus();
+        status.textContent=button.textContent.trim();
+      }catch(error){
+        status.textContent='Please use the MP4 download if playback is unavailable.';
+      }finally{
+        chapterButtons.forEach(item=>item.disabled=false);
+      }
+    }));
+  </script>
 </body>
 </html>
