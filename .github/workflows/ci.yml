@@ -21,7 +21,7 @@ jobs:
       - run: python scripts/preflight.py
       - run: python scripts/preflight.py --parameters infra/parameters.trial.json
       - run: bash -n scripts/deploy-azure.sh
-      - run: docker build --tag agora-match:ci .
+      - run: docker build --label "org.opencontainers.image.revision=$GITHUB_SHA" --tag agora-match:ci .
       - name: Exercise the container without Azure credentials
         run: |
           docker run -d --name agora-ci -p 8080:8080 agora-match:ci
@@ -31,6 +31,20 @@ jobs:
           done
           python scripts/smoke_azure.py --url http://127.0.0.1:8080
           docker stop agora-ci
+      - name: Export the tested image for trial subscriptions
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          docker save agora-match:ci | gzip -1 > agora-match-image.tar.gz
+          sha256sum agora-match-image.tar.gz > agora-match-image.tar.gz.sha256
+      - uses: actions/upload-artifact@v4
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        with:
+          name: agora-match-container
+          path: |
+            agora-match-image.tar.gz
+            agora-match-image.tar.gz.sha256
+          compression-level: 0
+          retention-days: 3
   infrastructure:
     runs-on: ubuntu-latest
     steps:
