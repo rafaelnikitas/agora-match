@@ -50,7 +50,7 @@ class AzureRuntimeTests(unittest.TestCase):
 
     def test_api_exposes_real_role_handoffs_and_verifies_connection_after_use(self):
         config=replace(BASE,reader='reader',writer='writer',reviewer='reviewer')
-        narrator,_=model_with([response('The recent attacks repeatedly ended in crosses.'),
+        narrator,_=model_with([response('{"fact_ids":["FA"]}'),
             response('The recent attacks ended in crosses. This is a short synthetic sample.'),response('{"approved":true}')],config)
         with TestClient(create_app(narrator=narrator,catalog=self.catalog)) as c:
             self.assertEqual(c.get('/api/state').json()['foundry_status']['connection'],'unverified')

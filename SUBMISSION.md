@@ -39,7 +39,7 @@ All teams, players, matches, histories, events, positions, ratings, and telemetr
 
 ## Verification
 
-Local release checks: 64 unit/API tests, 82 synthetic acceptance examples, and 73 browser-fallback assertions passed. These are regression checks over synthetic fixtures and mocked model failures; they do not measure live LLM accuracy. See [evaluation details](docs/accuracy-and-evaluation.md).
+Local release checks: 66 unit/API tests, 82 synthetic acceptance examples, and 73 browser-fallback assertions passed. These are regression checks over synthetic fixtures and mocked model failures; they do not measure live LLM accuracy. See [evaluation details](docs/accuracy-and-evaluation.md).
 
 ## Practical adoption path
 

@@ -99,7 +99,7 @@ node tests/browser_evidence.cjs
 python scripts/verify_intelligence.py
 ```
 
-Local release results: **65 unit/API tests**, **82 synthetic acceptance examples**, and **73 browser-fallback checks** passed. These checks cover deterministic behavior and mocked model failure modes; they are not a live LLM accuracy score. [Accuracy and evaluation](docs/accuracy-and-evaluation.md).
+Local release results: **66 unit/API tests**, **82 synthetic acceptance examples**, and **73 browser-fallback checks** passed. These checks cover deterministic behavior and mocked model failure modes; they are not a live LLM accuracy score. [Accuracy and evaluation](docs/accuracy-and-evaluation.md).
 
 ## Repository map
 

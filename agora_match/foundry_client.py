@@ -105,7 +105,7 @@ class AzureModelClient:
         except Exception:
             raise ProviderError("identity_unavailable") from None
 
-    def complete(self, deployment: str, system: str, evidence: dict, max_tokens: int, deadline: float) -> Completion:
+    def complete(self, deployment: str, system: str, evidence: dict, max_tokens: int, deadline: float, *, response_schema: dict | None = None) -> Completion:
         import json
         reasoning = deployment in self.settings.reasoning_deployments
         payload = {
@@ -113,6 +113,9 @@ class AzureModelClient:
             "messages": [{"role": "system", "content": system},
                          {"role": "user", "content": json.dumps(evidence, ensure_ascii=False)}],
         }
+        if response_schema:
+            payload['response_format'] = {'type': 'json_schema', 'json_schema': {
+                'name': 'agora_response', 'strict': True, 'schema': response_schema}}
         if reasoning:
             payload["max_completion_tokens"] = max(1024, max_tokens * 4)
             if self.settings.reasoning_effort:

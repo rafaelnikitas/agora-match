@@ -26,7 +26,7 @@ def model_with(responses, config=BASE, **kwargs):
         if isinstance(item,Exception):
             raise item
         payload=json.loads(request.content)
-        if item.status_code == 200 and 'Return strict JSON only' in payload['messages'][0]['content']:
+        if item.status_code == 200 and '"lead"' in payload['messages'][0]['content'] and 'Return strict JSON only' in payload['messages'][0]['content']:
             body=item.json()
             content=body['choices'][0]['message']['content']
             if not content.startswith('{'):
@@ -68,13 +68,16 @@ class NarratorTests(unittest.TestCase):
 
     def test_three_roles_handoff_then_cache_only_the_approved_answer(self):
         config = replace(BASE,reader='reader',writer='writer',reviewer='reviewer')
-        model,calls = model_with([response('The recent corner record adds context.'),response('The recent corner record adds useful context.'),response('{"approved":true}')],config)
+        model,calls = model_with([response('{"fact_ids":["FA"]}'),response('The recent corner record adds useful context.'),response('{"approved":true}')],config)
         result = model.answer('Why is this corner important?','fan',self.grounded,True)
         self.assertTrue(result['model_used'])
         self.assertEqual([r['stage'] for r in result['agent_trace']],['match_analyst','audience_narrator','evidence_reviewer'])
         sent = [json.loads(r.content) for r in calls]
         self.assertEqual(sent[1]['messages'][1]['role'],'user')
-        self.assertIn('analyst_observation',json.loads(sent[1]['messages'][1]['content']))
+        self.assertEqual(json.loads(sent[1]['messages'][1]['content'])['analyst_fact_ids'],['FA'])
+        self.assertTrue(all(p['response_format']['type']=='json_schema' for p in sent))
+        self.assertTrue(all(p['response_format']['json_schema']['strict'] for p in sent))
+        self.assertEqual(sent[1]['response_format']['json_schema']['schema']['properties']['fact_ids']['items']['enum'],['FA'])
         self.assertTrue(json.loads(sent[0]['messages'][1]['content'])['evidence']['plain_language'])
         cached = model.answer('Why is this corner important?','fan',self.grounded,True)
         self.assertTrue(cached['cache_hit'])
@@ -83,12 +86,28 @@ class NarratorTests(unittest.TestCase):
 
     def test_reviewer_rejection_retains_original_facts_and_text(self):
         config = replace(BASE,reader='reader',writer='writer',reviewer='reviewer')
-        model,_ = model_with([response('A corner pattern adds context.'),response('The corner record adds context to this chance.'),response('{"approved":false}')],config)
+        model,_ = model_with([response('{"fact_ids":["FA"]}'),response('The corner record adds context to this chance.'),response('{"approved":false}')],config)
         result = model.answer('Why?','coach',self.grounded)
         self.assertFalse(result['model_used'])
         self.assertEqual(result['reason'],'reviewer_rejected')
         self.assertEqual(result['text'],self.grounded['text'])
         self.assertEqual(result['facts'],self.grounded['facts'])
+
+    def test_reader_cannot_invent_facts_or_authorize_unselected_writer_facts(self):
+        config = replace(BASE,reader='reader',writer='writer',reviewer='reviewer')
+        for raw in ['{"fact_ids":["UNKNOWN"]}', '{"fact_ids":["FA","FA"]}',
+                    '{"fact_ids":[]}', '{"fact_ids":["FA"],"claim":"999 goals"}']:
+            with self.subTest(raw=raw):
+                model,calls = model_with([response(raw)],config)
+                result = model.answer('Why is this corner important?','fan',self.grounded)
+                self.assertFalse(result['model_used'])
+                self.assertEqual(result['reason'],'analyst_evidence_bounds')
+                self.assertEqual(result['facts'],self.grounded['facts'])
+                self.assertEqual(len(calls),1)
+        model,calls = model_with([response('{"fact_ids":["FA"]}'),
+            response('{"lead":"The recent record adds context.","fact_ids":["FB"]}')],config)
+        self.assertEqual(model.answer('Why?','fan',self.grounded)['reason'],'narrator_evidence_bounds')
+        self.assertEqual(len(calls),2)
 
     def test_reasoning_profile_omits_temperature_and_changes_token_parameter(self):
         model,calls = model_with([response('The match has synthetic context.')],replace(BASE,reasoning_deployments=frozenset({'chat'})))
@@ -126,7 +145,7 @@ class NarratorTests(unittest.TestCase):
         model,_ = model_with([item])
         self.assertEqual(model.answer('Why?','fan',self.grounded)['reason'],'provider_incomplete')
         config=replace(BASE,reader='r',writer='w',reviewer='v')
-        model,_ = model_with([response('A corner adds context.'),response('A corner adds context.'),response('not JSON')],config)
+        model,_ = model_with([response('{"fact_ids":["FA"]}'),response('A corner adds context.'),response('not JSON')],config)
         self.assertEqual(model.answer('Why?','fan',self.grounded)['reason'],'reviewer_rejected')
 
     def test_configuration_status_never_claims_a_connection_before_a_call(self):

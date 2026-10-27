@@ -17,7 +17,7 @@ Azure does not improve the underlying synthetic measurements. It enables the mod
 
 ## Architecture boundaries
 
-The browser uses one origin for the existing interface and FastAPI API. The API computes and retrieves evidence before calling Foundry. A reader creates an observation, a writer adapts it to the chosen role, and a reviewer can reject it. Every stage receives the same bounded evidence. All three roles may share one deployment; three roles do not imply three different models.
+The browser uses one origin for the existing interface and FastAPI API. The API computes and retrieves evidence before calling Foundry. A reader ranks supplied fact IDs, a writer explains the selected evidence for the audience, and a reviewer can reject it. Schema-constrained outputs limit each role's fields and eligible fact IDs. Application validation remains mandatory: unknown IDs, duplicates, unselected facts, new numerical claims, and rejected reviews fall back safely. The writer receives the reader's validated subset; the reviewer can check the complete evidence bundle. All three roles may share one deployment; three roles do not imply three different models.
 
 The application orchestrates the roles in Python. It does **not** deploy Foundry Agent Service or claim a Microsoft Agent Framework workflow. Calculations, ranking, player ratings, and geometry remain deterministic. Model review and numeric checks reduce errors but are not a proof that every qualitative statement is correct.
 
