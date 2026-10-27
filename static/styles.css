@@ -40,3 +40,14 @@ body[data-audience="analyst"] .match-grid,body[data-audience="coach"] .match-gri
 .analysis-clock-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:14px 0;font-size:.82rem;color:var(--muted,#586477)}.analysis-clock-bar details{position:relative}.analysis-clock-bar details>div{position:absolute;right:0;z-index:30;width:min(360px,80vw);padding:18px;background:var(--panel,#fff);border:1px solid var(--line,#ccd4de);border-radius:12px;box-shadow:0 12px 38px #10182825}.analysis-clock-bar summary,.more-insights summary{cursor:pointer;padding:10px}.evidence-jump{display:inline-block;font-size:.75rem;padding:7px 10px;margin:5px 4px 2px 0;border:1px solid currentColor;border-radius:7px;background:transparent;color:inherit;cursor:pointer}.moment-context h3{margin:6px 0 10px}.moment-context>p{line-height:1.55}.moment-facts{display:flex;gap:12px;margin:15px 0}.moment-facts>span{flex:1;padding:12px;border-radius:8px;background:#64748b0d}.moment-facts strong,.moment-facts small{display:block}.moment-facts strong{font-size:1.25rem}.moment-facts small{line-height:1.4;margin-top:6px}.moment-context>small{display:block;opacity:.7}.more-insights{grid-column:1/-1}.more-insights>article{margin-top:12px}body[data-analysis-pending="true"] :is(#player-context,#player-stats,#role-kpis,#player-comparison,#player-heatmap,#rating-trace,#rating-value,#rating-through,#player-moments,#player-matchups,#coach-indicators,#coach-priority-board,#coach-team-table,#coach-review-plan,#coach-matchup,#workload-chart,#analysis-result,#analyst-tools,#matchup-explorer,#insights,#live-insights,#recap-card,#moment-context,#fan-matchday,#chat-messages){visibility:hidden}body[data-analysis-pending="true"] #chat-submit{opacity:.45}
 
 body[data-analysis-pending="true"] :is(#attack-pulse,#event-explorer,#player-rank-label,#player-moment-caption,#kpi-heading){visibility:hidden}
+
+/* The name's story stays optional; choosing a perspective remains the main action. */
+.perspective-invitation{font-size:13px;color:var(--ink);font-weight:500;margin:0 0 8px;line-height:1.5}
+.onboarding-copy>p:last-child{max-width:510px}
+.agora-story{max-width:720px;margin-top:24px;border-top:1px solid var(--line)}
+.agora-story summary{cursor:pointer;min-height:46px;padding:14px 0;font-size:14px;font-weight:600;list-style-position:inside;color:var(--ink)}
+.agora-story summary span{margin-left:9px;color:var(--muted);font-size:13px;font-weight:400}
+.agora-story summary:focus-visible{outline:3px solid var(--accent);outline-offset:4px;border-radius:4px}
+.agora-story p{font-size:14px;line-height:1.75;color:var(--muted);margin:0 0 12px;max-width:650px}
+.agora-story .agora-story-closing{color:var(--ink);font-weight:500}
+@media(max-width:640px){.onboarding-copy>p:last-child{max-width:440px}.perspective-invitation{font-size:12px}.agora-story{margin-top:20px}.agora-story p{font-size:13px}}

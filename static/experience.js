@@ -35,7 +35,7 @@ const AgoraExperience = (() => {
     const c = config[role];
     document.querySelector("#workspace-title").textContent = c.title;
     document.querySelector("#workspace-subtitle").textContent = c.subtitle;
-    document.querySelector("#workspace-role-label").textContent = c.label;
+    document.querySelector("#workspace-role-label").textContent = `Change perspective · ${role[0].toUpperCase() + role.slice(1)}`;
     document.querySelector("#match-chat-title").textContent = c.chat;
     document.querySelector(".chat-intro").textContent = c.chatLead;
     document.querySelector("#chat-input").placeholder = c.placeholder;

@@ -4,6 +4,10 @@
 
 Football has more to say than the score. Agora Match turns synthetic match events, player positions, wearable samples, and fictional team history into evidence-linked explanations for fans, analysts, and coaches. Follow the ball, ask why a moment matters, inspect a player or matchup, and turn a finding into a timed broadcast card. The same evidence becomes three focused experiences, with sample sizes, source links, and uncertainty kept visible.
 
+## Why Agora? · Αγορά
+
+The ancient Greek agora was a public gathering place for conversation, ideas, and different viewpoints. Agora Match brings that spirit to football: the match brings us together, while each person's perspective shapes the experience. Anyone can follow the story as a fan, investigate the evidence as an analyst, or consider the choices as a coach—and switch perspectives at any time. One match. Many perspectives.
+
 ## Links
 
 - Working app: https://agoramatch.russettitan64.chatgpt.site/

@@ -1,5 +1,12 @@
 # Agora Match: three experiences over shared evidence
 
+## Why Agora? · Αγορά
+
+The welcome screen connects the name with its purpose: the ancient Greek agora was a public gathering place for conversation, ideas, and different viewpoints. “Football belongs to everyone” introduces “One match. Many perspectives.” Each role is a way to explore shared evidence, rather than a professional identity the visitor must hold.
+
+The fan card invites visitors to follow the story, the analyst card to explore the evidence, and the coach card to understand the choices. A visible “Change perspective” control lets visitors try another view. The fuller name explanation stays in a native, keyboard-accessible disclosure below the cards, keeping the main choice clear.
+
+
 ## Product contract
 
 One synthetic match catalog powers three different workspaces. Choosing a role changes the default screen, layout, navigation, guided steps, question suggestions, player summary, and assistant's purpose. It does not change the underlying measurements.
@@ -34,7 +41,7 @@ One synthetic match catalog powers three different workspaces. Choosing a role c
 - Role and theme preferences are saved on the device. Conversation state is isolated by match and role for the current page session.
 - Plain language changes vocabulary without converting Analyst or Coach to Fan.
 - Keyboard focus is visible. Form controls retain keyboard access. Reduced-motion preferences disable decorative transitions.
-- Every assistant states the available data minute. Scrubbing the replay does not time-travel all statistics or historical retrieval: those still cover the full available synthetic snapshot.
+- Every assistant states the evidence cutoff. Scrubbing the replay bounds match statistics, cases, heatmaps, ratings, recaps, and answers to events available at that time; pre-match synthetic historical baselines remain available.
 - No referee section, real club footage, or real Premier League data is used.
 
 ## Foundry boundary

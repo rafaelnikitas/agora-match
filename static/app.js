@@ -974,7 +974,7 @@ async function init() {
       }
     } catch (_error) { /* Public static preview has no server-side Foundry proxy. */ }
     document.querySelectorAll("[data-enter-role]").forEach(button=>{ button.disabled = false; });
-    $("#onboarding-status").textContent = "Two matches ready. Choose your workspace.";
+    $("#onboarding-status").textContent = "Two synthetic matches ready.";
     const hasRole = ["fan", "analyst", "coach", "explorer", "studio"].includes(requestedView) || ["fan", "analyst", "coach"].includes(localStorage.getItem("agora-match-role"));
     if (hasRole) enterRole(viewSelect.value, true);
     else { $(".page").hidden = true; $("#screen-nav").hidden = true; $("#change-role").hidden = true; $("#onboarding").hidden = false; }

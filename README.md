@@ -4,6 +4,16 @@
 
 A football intelligence prototype for **fans, analysts, and coaches**. Follow a synthetic match, ask why a moment matters, and inspect the evidence behind the answer.
 
+### Why Agora? · Αγορά
+
+In ancient Greece, the agora was a public gathering place where people exchanged ideas and debated different viewpoints. Agora Match carries that spirit into football: a shared game, shared evidence, and different ways to understand what happens on the pitch.
+
+**Football belongs to everyone.** Follow the emotion as a fan, investigate as an analyst, or consider the decisions as a coach. These are perspectives anyone can try; change between them whenever you want.
+
+**One match. Many perspectives.**
+
+[See the welcome screen](docs/images/agora-welcome.jpg). The app includes a keyboard-accessible “Why Agora? / Αγορά” explanation and a “Change perspective” control throughout the experience.
+
 **[▶ Try the app](https://agoramatch.russettitan64.chatgpt.site/)** · **[Watch the 97-second demo](https://agoramatch.russettitan64.chatgpt.site/showcase.html)** · [Submission materials](SUBMISSION.md)
 
 ![Agora Match: synthetic pitch replay beside historical corner context](docs/images/agora-fan-workspace.jpg)
