@@ -1,5 +1,7 @@
 # Agora Match
 
+[Read the portfolio case study](https://rafaelnikitas.github.io/studies/agora-match/) · [Portfolio](https://rafaelnikitas.github.io)
+
 ## The story behind the score
 
 A football intelligence prototype for **fans, analysts, and coaches**. Follow a synthetic match, ask why a moment matters, and inspect the evidence behind the answer.
